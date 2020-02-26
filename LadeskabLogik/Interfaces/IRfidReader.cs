@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LadeskabLogik
 {
-    interface IRfidReader
+    public interface IRfidReader
     {
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LadeskabLogik
 {
-    interface IDisplay
+    public interface IDisplay
     {
     }
 }

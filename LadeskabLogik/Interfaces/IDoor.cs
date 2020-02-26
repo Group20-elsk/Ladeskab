@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LadeskabLogik
 {
-    interface IDoor
+    public interface IDoor
     {
     }
 }
