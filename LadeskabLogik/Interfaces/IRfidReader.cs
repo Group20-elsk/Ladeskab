@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LadeskabUnitTest
+namespace LadeskabLogik
 {
-    public class Class1
+    interface IRfidReader
     {
     }
 }
