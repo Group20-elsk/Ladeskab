@@ -5,8 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using LadeskabLogik;
 
-namespace UsbSimulator.Test
+namespace LadeskabUnitTest
 {
     [TestFixture]
     public class TestUsbChargerSimulator
