@@ -8,5 +8,6 @@ namespace LadeskabLogik
 {
     public interface IDoor
     {
+        void Lock
     }
 }
