@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Configuration;
 using System.Text;
 using System.Threading.Tasks;
 using LadeskabLogik;
@@ -23,13 +24,19 @@ namespace Ladeskab
         private IUsbCharger _charger;
         private int _oldId;
         public bool CurrentDoorStatus { get; set; }
+        public bool CurrentRfidSensedStatus { get; set; }
 
         private string logFile = "logfile.txt"; // Navnet på systemets log-fil
 
-        public StationControl(IDoor doorStatus)
+        public StationControl(IDoor doorStatus, IRfidReader rfidStatus)
         {
             doorStatus.DoorChangedEvents += HandleDoorStatusChangedEvent;
+            rfidStatus.RfidSensedEvents += HandleRfidStatusChangedEvent;
+        }
 
+        private void HandleRfidStatusChangedEvent(object sender, RfidSensedEventArgs e)
+        {
+            CurrentRfidSensedStatus = e.RfidSensed;
         }
 
         private void HandleDoorStatusChangedEvent(object sender, DoorChangedEventArgs e)

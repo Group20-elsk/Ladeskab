@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace LadeskabLogik
 {
-    public interface IRfidReader
+    public class RfidSensedEventArgs
     {
-        event EventHandler<RfidSensedEventArgs> RfidSensedEvents;
+        public bool RfidSensed { get; set; }
     }
 }
