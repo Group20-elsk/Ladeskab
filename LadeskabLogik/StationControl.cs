@@ -22,10 +22,21 @@ namespace Ladeskab
         private LadeskabState _state;
         private IUsbCharger _charger;
         private int _oldId;
+        public bool CurrentDoorStatus { get; set; }
 
         private string logFile = "logfile.txt"; // Navnet på systemets log-fil
 
-        // Her mangler constructor
+        public StationControl(IDoor doorStatus)
+        {
+            doorStatus.DoorChangedEvents += HandleDoorStatusChangedEvent;
+
+        }
+
+        private void HandleDoorStatusChangedEvent(object sender, DoorChangedEventArgs e)
+        {
+            CurrentDoorStatus = e.OpenDoor;
+            //Kald metode, der udfører handling
+        }
 
         // Eksempel på event handler for eventet "RFID Detected" fra tilstandsdiagrammet for klassen
         private void RfidDetected(int id)

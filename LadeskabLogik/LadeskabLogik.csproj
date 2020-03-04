@@ -44,6 +44,7 @@
     <Compile Include="ChargeControl.cs" />
     <Compile Include="Display.cs" />
     <Compile Include="Door.cs" />
+    <Compile Include="DoorChangedEventArgs.cs" />
     <Compile Include="Interfaces\IChangeControl.cs" />
     <Compile Include="Interfaces\ILog.cs" />
     <Compile Include="Interfaces\IDisplay.cs" />
