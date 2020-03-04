@@ -8,5 +8,6 @@ namespace LadeskabLogik.Interfaces
 {
     public interface IChangeControl
     {
+
     }
 }
