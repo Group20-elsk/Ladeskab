@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace LadeskabLogik
 {
-    public interface IDoor
+    public class DoorChangedEventArgs : EventArgs
     {
-        event EventHandler<DoorChangedEventArgs>DoorChangedEvents;
+        public bool OpenDoor { get; set; }
     }
 }
