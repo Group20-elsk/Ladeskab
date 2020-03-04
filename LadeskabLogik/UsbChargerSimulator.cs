@@ -12,7 +12,7 @@ namespace LadeskabLogik
         private const int ChargeTimeMinutes = 20; // minutes
         private const int CurrentTickInterval = 250; // ms
 
-        public event EventHandler<CurrentEventArgs> CurrentValueEvent;
+        public event EventHandler<CurrentEventArgs> CurrentValueEvent; //The connection point for Observers. 
 
         public double CurrentValue { get; private set; }
 
