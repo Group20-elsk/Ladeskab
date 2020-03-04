@@ -9,16 +9,16 @@ namespace LadeskabLogik
 
     public class Door : IDoor
     {
-        private bool _oldStatus;
+        private bool _oldDoorStatus;
 
         public event EventHandler<DoorChangedEventArgs> DoorChangedEvents;
 
-        public void SetDoorStatus(bool newStatus)
+        public void SetDoorStatus(bool newDoorStatus)
         {
-            if (newStatus != _oldStatus)
+            if (newDoorStatus != _oldDoorStatus)
             {
-                OnDoorStatusChanged(new DoorChangedEventArgs {OpenDoor = newStatus});
-                _oldStatus = newStatus;
+                OnDoorStatusChanged(new DoorChangedEventArgs {OpenDoor = newDoorStatus});
+                _oldDoorStatus = newDoorStatus;
             }
         }
 

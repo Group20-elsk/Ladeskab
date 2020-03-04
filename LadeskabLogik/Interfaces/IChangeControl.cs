@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LadeskabLogik.Interfaces
+namespace LadeskabLogik
 {
     public interface IChangeControl
     {
-
+        void HandleCurrentEvent(object sender, CurrentEventArgs e); 
     }
 }
