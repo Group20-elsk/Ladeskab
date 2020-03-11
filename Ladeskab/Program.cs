@@ -15,18 +15,18 @@ namespace LadeskabAPP
             Console.WriteLine("To close the door, press C");
             
            IDoor door = new Door();
-           //bool doorOpen;
+           
 
             var key = Console.ReadKey(true);//Skal altid læse hvad for en tast der bliver tastet på
-            //bool doorOpen;
+            bool doorOpen;
             switch (key.KeyChar)
             {
                 case 'O':
-                    
+                    door.SetDoorStatus(doorOpen = true);
                     break;
 
                 case 'C':
-                    
+                    door.SetDoorStatus(doorOpen = false);
                     break;
 
                 
