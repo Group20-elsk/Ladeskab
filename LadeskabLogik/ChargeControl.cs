@@ -18,16 +18,24 @@ namespace LadeskabLogik
             usbCharger.CurrentValueEvent += HandleCurrentEvent; //Attach
         }
 
-        public void HandleCurrentEvent(object sender, CurrentEventArgs e)   //update
+        public void HandleCurrentEvent(object sender, CurrentEventArgs e)   //Update
         {
-            CurrentCurrent = e.Current;
+            CurrentCurrent = e.Current; //Her lægges strøm værdien ind i den lokale variable
 
             if (CurrentCurrent == 0.0)
             {
-
+                if (IsConnected())
+                {
+                    StartCharge();
+                }
+                else
+                {
+                    _display.DisplayNothing();
+                }
             }
             else if (CurrentCurrent > 0.0 && CurrentCurrent <= 5.0)
             {
+                StopCharge();
                 _display.DisplayFullyCharge();
             }
             else if (CurrentCurrent > 5.0 && CurrentCurrent <= 500.0)
@@ -36,7 +44,7 @@ namespace LadeskabLogik
             }
             else if (CurrentCurrent > 500.0)
             {
-                _display.DisplayError(); 
+                _display.DisplayErrorCharging();
             }
 
         }
@@ -48,12 +56,13 @@ namespace LadeskabLogik
 
         public void StartCharge()
         {
-            throw new NotImplementedException();
+            _charger.StartCharge();
+            _display.DisplayNothing();
         }
 
         public void StopCharge()
         {
-            throw new NotImplementedException();
+            _charger.StopCharge();
         }
     }
 }
