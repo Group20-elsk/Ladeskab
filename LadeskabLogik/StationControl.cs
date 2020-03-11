@@ -42,7 +42,16 @@ namespace Ladeskab
         private void HandleDoorStatusChangedEvent(object sender, DoorChangedEventArgs e)
         {
             CurrentDoorStatus = e.DoorStatus;
-            //Kald metode, der udfører handling
+            if (CurrentDoorStatus == false)
+            {
+                Console.WriteLine("Indlæs RFID");
+            }
+
+            if (CurrentDoorStatus == true)
+            {
+                Console.WriteLine("Tilslut telefon");
+            }
+            
         }
 
         // Eksempel på event handler for eventet "RFID Detected" fra tilstandsdiagrammet for klassen
