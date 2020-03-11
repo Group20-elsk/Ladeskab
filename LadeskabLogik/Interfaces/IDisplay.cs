@@ -14,6 +14,6 @@ namespace LadeskabLogik
 
         void DisplayCharging();
 
-        void DisplayError();
+        void DisplayErrorCharging();
     }
 }

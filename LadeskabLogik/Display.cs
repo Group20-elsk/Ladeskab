@@ -23,6 +23,7 @@ namespace LadeskabLogik
             Console.WriteLine("Oplades...");
         }
 
+
         public void DisplayErrorCharging()
         {
             Console.WriteLine("Fejlmeddelelse - Opladning");
