@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using LadeskabLogik;
 
 namespace LadeskabAPP
 {
@@ -11,22 +10,22 @@ namespace LadeskabAPP
     {
         static void Main(string[] args)
         {
-           Console.WriteLine("To open the door, press O");
-           Console.WriteLine("To close the door, press C");
+            Console.WriteLine("To open the door, press O");
+            Console.WriteLine("To close the door, press C");
             
            IDoor door = new Door();
-           
+           bool doorOpen;
 
             var key = Console.ReadKey(true);//Skal altid læse hvad for en tast der bliver tastet på
             bool doorOpen;
             switch (key.KeyChar)
             {
                 case 'O':
-                    door.SetDoorStatus(doorOpen = true);
+                    
                     break;
 
                 case 'C':
-                    door.SetDoorStatus(doorOpen = false);
+                    
                     break;
 
                 
