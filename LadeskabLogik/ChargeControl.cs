@@ -15,6 +15,7 @@ namespace LadeskabLogik
         public ChargeControl(IUsbCharger usbCharger, IDisplay display)
         {
             _display = display;
+            _charger = usbCharger;
             usbCharger.CurrentValueEvent += HandleCurrentEvent; //Attach
         }
 
