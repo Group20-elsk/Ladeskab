@@ -8,5 +8,12 @@ namespace LadeskabLogik
 {
     public interface IDisplay
     {
+        void DisplayNothing();
+
+        void DisplayFullyCharge();
+
+        void DisplayCharging();
+
+        void DisplayError();
     }
 }
