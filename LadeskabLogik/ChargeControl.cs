@@ -15,13 +15,22 @@ namespace LadeskabLogik
         public ChargeControl(IUsbCharger usbCharger, IDisplay display)
         {
             _display = display;
-            usbCharger.CurrentValueEvent += HandleCurrentEvent;
+            usbCharger.CurrentValueEvent += HandleCurrentEvent; //Attach
         }
 
-        public void HandleCurrentEvent(object sender, CurrentEventArgs e)
+        public void HandleCurrentEvent(object sender, CurrentEventArgs e)   //update
         {
             CurrentCurrent = e.Current;
-            //Muligvis tilføj mere. 
+
+            if (CurrentCurrent == 0.0)
+            {
+
+            }
+            else if (CurrentCurrent > 0.0 && CurrentCurrent <= 5.0)
+            {
+                _display.
+            }
+
         }
 
         public bool IsConnected()
