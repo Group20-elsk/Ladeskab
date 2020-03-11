@@ -9,5 +9,6 @@ namespace LadeskabLogik
     public interface IDoor
     {
         event EventHandler<DoorChangedEventArgs>DoorChangedEvents;
+        
     }
 }
