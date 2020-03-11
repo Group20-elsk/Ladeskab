@@ -11,10 +11,14 @@ namespace LadeskabAPP
     {
         static void Main(string[] args)
         {
-            console.writeline("To open the door, press O");
-            console.writeline("To close the door, press C");
+           Console.WriteLine("To open the door, press O");
+           Console.WriteLine("To close the door, press C");
             
+           IDoor door = new Door();
+           
+
             var key = Console.ReadKey(true);//Skal altid læse hvad for en tast der bliver tastet på
+            bool doorOpen;
             switch (key.KeyChar)
             {
                 case 'O':
