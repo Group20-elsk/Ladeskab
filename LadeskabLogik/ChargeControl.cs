@@ -10,6 +10,7 @@ namespace LadeskabLogik
     {
         public double CurrentCurrent { get; set; }
         private IDisplay _display;
+        private IUsbCharger _charger;
 
         public ChargeControl(IUsbCharger usbCharger, IDisplay display)
         {
@@ -21,6 +22,21 @@ namespace LadeskabLogik
         {
             CurrentCurrent = e.Current;
             //Muligvis tilføj mere. 
+        }
+
+        public bool IsConnected()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void StartCharge()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void StopCharge()
+        {
+            throw new NotImplementedException();
         }
     }
 }
