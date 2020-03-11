@@ -8,6 +8,6 @@ namespace LadeskabLogik
 {
     public class DoorChangedEventArgs : EventArgs
     {
-        public bool OpenDoor { get; set; }
+        public bool DoorStatus { get; set; }
     }
 }

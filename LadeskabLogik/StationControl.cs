@@ -30,8 +30,8 @@ namespace Ladeskab
 
         public StationControl(IDoor doorStatus, IRfidReader rfidStatus)
         {
-            doorStatus.DoorChangedEvents += HandleDoorStatusChangedEvent;
-            rfidStatus.RfidSensedEvents += HandleRfidStatusChangedEvent;
+            doorStatus.DoorChangedEvents += HandleDoorStatusChangedEvent;//attacher 
+            rfidStatus.RfidSensedEvents += HandleRfidStatusChangedEvent;//attacher
         }
 
         private void HandleRfidStatusChangedEvent(object sender, RfidSensedEventArgs e)
@@ -41,7 +41,7 @@ namespace Ladeskab
 
         private void HandleDoorStatusChangedEvent(object sender, DoorChangedEventArgs e)
         {
-            CurrentDoorStatus = e.OpenDoor;
+            CurrentDoorStatus = e.DoorStatus;
             //Kald metode, der udfører handling
         }
 

@@ -17,14 +17,14 @@ namespace LadeskabLogik
         {
             if (newDoorStatus != _oldDoorStatus)
             {
-                OnDoorStatusChanged(new DoorChangedEventArgs {OpenDoor = newDoorStatus});
+                OnDoorStatusChanged(new DoorChangedEventArgs {DoorStatus = newDoorStatus});
                 _oldDoorStatus = newDoorStatus;
             }
         }
 
         protected virtual void OnDoorStatusChanged(DoorChangedEventArgs e)
         {
-            DoorChangedEvents?.Invoke(this,e);
+            DoorChangedEvents?.Invoke(this,e);//invoker alle dem som har 
         }
 
 
