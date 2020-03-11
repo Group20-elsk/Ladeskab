@@ -10,22 +10,22 @@ namespace LadeskabLogik
     {
         public void DisplayNothing()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Display nothing");
         }
 
         public void DisplayFullyCharge()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Telefon er fuldt opladet");
         }
 
         public void DisplayCharging()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Oplades...");
         }
 
-        public void DisplayError()
+        public void DisplayErrorCharging()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Fejlmeddelelse - Opladning");
         }
     }
 }

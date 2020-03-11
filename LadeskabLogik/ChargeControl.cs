@@ -28,7 +28,15 @@ namespace LadeskabLogik
             }
             else if (CurrentCurrent > 0.0 && CurrentCurrent <= 5.0)
             {
-                _display.
+                _display.DisplayFullyCharge();
+            }
+            else if (CurrentCurrent > 5.0 && CurrentCurrent <= 500.0)
+            {
+                _display.DisplayCharging();
+            }
+            else if (CurrentCurrent > 500.0)
+            {
+                _display.DisplayError(); 
             }
 
         }
