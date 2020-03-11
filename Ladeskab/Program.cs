@@ -11,8 +11,8 @@ namespace LadeskabAPP
     {
         static void Main(string[] args)
         {
-           Console.WriteLine("To open the door, press O");
-           Console.WriteLine("To close the door, press C");
+            Console.WriteLine("To open the door, press O");
+            Console.WriteLine("To close the door, press C");
             
            IDoor door = new Door();
            
