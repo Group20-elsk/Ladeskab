@@ -10,8 +10,8 @@ namespace LadeskabAPP
     {
         static void Main(string[] args)
         {
-            console.writeline("To open the door, press O");
-            console.writeline("To close the door, press C");
+            Console.WriteLine("To open the door, press O");
+            Console.WriteLine("To close the door, press C");
             
             var key = Console.ReadKey(true);//Skal altid læse hvad for en tast der bliver tastet på
             switch (key.KeyChar)

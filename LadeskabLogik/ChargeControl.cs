@@ -24,18 +24,10 @@ namespace LadeskabLogik
 
             if (CurrentCurrent == 0.0)
             {
-                if (IsConnected())
-                {
-                    StartCharge();
-                }
-                else
-                {
-                    _display.DisplayNothing();
-                }
+                _display.DisplayNothing();
             }
             else if (CurrentCurrent > 0.0 && CurrentCurrent <= 5.0)
             {
-                StopCharge();
                 _display.DisplayFullyCharge();
             }
             else if (CurrentCurrent > 5.0 && CurrentCurrent <= 500.0)
@@ -51,13 +43,12 @@ namespace LadeskabLogik
 
         public bool IsConnected()
         {
-            throw new NotImplementedException();
+            return _charger.Connected;
         }
 
         public void StartCharge()
         {
             _charger.StartCharge();
-            _display.DisplayNothing();
         }
 
         public void StopCharge()
