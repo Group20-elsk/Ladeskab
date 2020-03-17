@@ -27,8 +27,8 @@ namespace Ladeskab
         public bool CurrentRfidSensedStatus { get; set; }
 
         private string logFile = "logfile.txt"; // Navnet på systemets log-fil
-        IDisplay _display = new Display();
-
+        private IDisplay _display = new Display();
+        //IChangeControl _chargeControl = new ChargeControl(_charger, _display);
         public StationControl(IDoor doorStatus, IRfidReader rfidStatus)
         {
             doorStatus.DoorChangedEvents += HandleDoorStatusChangedEvent;//attacher 
@@ -38,19 +38,24 @@ namespace Ladeskab
         private void HandleRfidStatusChangedEvent(object sender, RfidSensedEventArgs e)
         {
             CurrentRfidSensedStatus = e.RfidSensed;
+            RfidDetected(10);//Evt. ændre ID senere
+            _state = LadeskabState.Locked;
+
         }
 
         private void HandleDoorStatusChangedEvent(object sender, DoorChangedEventArgs e)
         {
             CurrentDoorStatus = e.DoorStatus;
-            if (CurrentDoorStatus == false)
+            if (CurrentDoorStatus == false)//lukket dør
             {
                 _display.DisplayDoorClosed();
             }
 
-            if (CurrentDoorStatus == true)
+            if (CurrentDoorStatus == true)//åbnet dør
             {
                 _display.DisplayDoorOpen();
+                _state = LadeskabState.DoorOpen; 
+
             }
             
         }

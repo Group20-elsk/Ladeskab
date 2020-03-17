@@ -13,26 +13,32 @@ namespace LadeskabAPP
         {
             Console.WriteLine("To open the door, press O");
             Console.WriteLine("To close the door, press C");
-            
-           IDoor door = new Door();
-
+            Console.WriteLine("To use RFID, press R");
+            IDoor _door = new Door();
+            IRfidReader _rfidReader = new RfidReader();
 
             var key = Console.ReadKey(true);//Skal altid læse hvad for en tast der bliver tastet på
+            
             bool doorOpen;
+            bool rfidAvailable;
+
             switch (key.KeyChar)
             {
                 case 'O':
-                    door.SetDoorStatus(doorOpen = true);
+                    _door.SetDoorStatus(doorOpen = true);
                     break;
 
                 case 'C':
-                    door.SetDoorStatus(doorOpen = false);
+                    _door.SetDoorStatus(doorOpen = false);
                     break;
-
+                case 'R':
+                    _rfidReader.SetRfidReaderStatus(rfidAvailable=true);
+                    break;
 
             }
 
-
+            
+           
             //Test
             //UsbChargerSimulator ucs = new UsbChargerSimulator();
             //Display d = new Display();

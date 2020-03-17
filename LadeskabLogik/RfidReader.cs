@@ -18,6 +18,7 @@ namespace LadeskabLogik
             {
                 OnRfidStatusChanged(new RfidSensedEventArgs{RfidSensed = _newRfidStatus});
                 _oldRfidStatus = _newRfidStatus;
+
             }
         }
 
