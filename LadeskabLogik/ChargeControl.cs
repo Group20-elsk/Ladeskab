@@ -14,6 +14,7 @@ namespace LadeskabLogik
 
         public ChargeControl(IUsbCharger usbCharger, IDisplay display)
         {
+            CurrentCurrent = 0.0; //Tilføjet af Pat for at lave tests. Skal måske fjernes. 
             _display = display;
             _charger = usbCharger;
             usbCharger.CurrentValueEvent += HandleCurrentEvent; //Attach
