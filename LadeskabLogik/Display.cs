@@ -39,14 +39,6 @@ namespace LadeskabLogik
             Console.WriteLine("Tilslut telefon");
         }
 
-        public void DoorOpen()
-        {
-            Console.WriteLine("Døren er åbnet");
-        }
-
-        public void DoorClose()
-        {
-            Console.WriteLine("Døren er lukket");
-        }
+       
     }
 }

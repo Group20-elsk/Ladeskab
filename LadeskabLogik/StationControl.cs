@@ -27,8 +27,10 @@ namespace Ladeskab
         public bool CurrentRfidSensedStatus { get; set; }
 
         private string logFile = "logfile.txt"; // Navnet på systemets log-fil
-        private IDisplay _display = new Display();
-        IChangeControl _chargeControl;
+        private IDisplay _display;
+        private IChangeControl _chargeControl;
+        private IDoor _door;
+        private IRfidReader _rfidReader;
         public StationControl(IDoor doorStatus, IRfidReader rfidStatus)
         {
             doorStatus.DoorChangedEvents += HandleDoorStatusChangedEvent;//attacher 
@@ -39,7 +41,6 @@ namespace Ladeskab
         {
             CurrentRfidSensedStatus = e.RfidSensed;
             RfidDetected(10);//Evt. ændre ID senere
-            _state = LadeskabState.Locked;
 
         }
 
@@ -70,7 +71,7 @@ namespace Ladeskab
                     _chargeControl.IsConnected();//returnere en boolean 
                     if (_charger.Connected)
                     {
-                        //_door.LockDoor();
+                        _door.DoorClose();
                         _charger.StartCharge();
                         _oldId = id;
                         using (var writer = File.AppendText(logFile))
@@ -97,7 +98,7 @@ namespace Ladeskab
                     if (id == _oldId)
                     {
                         _charger.StopCharge();
-                        //_door.UnlockDoor();
+                        _door.DoorOpen();
                         using (var writer = File.AppendText(logFile))
                         {
                             writer.WriteLine(DateTime.Now + ": Skab låst op med RFID: {0}", id);

@@ -20,7 +20,7 @@ namespace LadeskabAPP
             var key = Console.ReadKey(true);//Skal altid læse hvad for en tast der bliver tastet på
             
             bool doorOpen;
-            bool rfidAvailable;
+            bool rfidRead;
 
             switch (key.KeyChar)
             {
@@ -32,7 +32,7 @@ namespace LadeskabAPP
                     _door.SetDoorStatus(doorOpen = false);
                     break;
                 case 'R':
-                    _rfidReader.SetRfidReaderStatus(rfidAvailable=true);
+                    _rfidReader.SetRfidReaderStatus(rfidRead=true);
                     break;
 
             }
