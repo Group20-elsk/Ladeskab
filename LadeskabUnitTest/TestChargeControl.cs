@@ -30,13 +30,26 @@ namespace LadeskabUnitTest
 
         }
 
+
+
         [Test]
         public void CurrentCurrent_CurrentSetToNewValue_EventFired()
         {
             _uut.CurrentCurrent = 500.0;
+            _uut.StartCharge();
 
             Assert.That(_receivedEventArgs, Is.Not.Null);
         }
+
+        [Test]
+        public void CurrentCurrent_CurrentSetToNewValue_NewCurrentValue_Is_500()
+        {
+            _uut.CurrentCurrent = 500.0;
+            _uut.StartCharge();
+
+            Assert.That(_receivedEventArgs.Current, Is.EqualTo(500.0));
+        }
+
 
         [Test]
         public void ChargeControl_Is_Connected()
