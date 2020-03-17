@@ -27,7 +27,7 @@ namespace Ladeskab
         public bool CurrentRfidSensedStatus { get; set; }
 
         private string logFile = "logfile.txt"; // Navnet på systemets log-fil
-        private IDisplay _display;
+        IDisplay _display;
         private IChangeControl _chargeControl;
         private IDoor _door;
         private IRfidReader _rfidReader;
