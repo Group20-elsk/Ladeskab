@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Ladeskab;
 using LadeskabLogik;
+using LadeskabLogik.Interfaces;
 
 namespace LadeskabAPP
 {
@@ -11,34 +13,35 @@ namespace LadeskabAPP
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("To open the door, press O");
-            Console.WriteLine("To close the door, press C");
-            Console.WriteLine("To use RFID, press R");
+            Console.WriteLine("To open the door, press o");
+            Console.WriteLine("To close the door, press c");
+            Console.WriteLine("To use RFID, press r");
             IDoor _door = new Door();
             IRfidReader _rfidReader = new RfidReader();
+            StationControl _stationControl = new StationControl(_door,_rfidReader);
 
-            var key = Console.ReadKey(true);//Skal altid læse hvad for en tast der bliver tastet på
-            
-            bool doorOpen;
-            bool rfidRead;
-
-            switch (key.KeyChar)
+            while (true)
             {
-                case 'O':
-                    _door.SetDoorStatus(doorOpen = true);
-                    break;
+                 var key = Console.ReadKey(true);//Skal altid læse hvad for en tast der bliver tastet på
+                
+                switch (key.KeyChar)
+                {
+                    case 'o':
+                        _door.SetDoorStatus(true);
+                        break;
 
-                case 'C':
-                    _door.SetDoorStatus(doorOpen = false);
-                    break;
-                case 'R':
-                    _rfidReader.SetRfidReaderStatus(rfidRead=true);
-                    break;
+                    case 'c':
+                        _door.SetDoorStatus(false);
+                        break;
+                    case 'r':
+                        _rfidReader.SetRfidReaderStatus(true);
+                        break;
 
+                }
             }
-
             
-           
+
+
             //Test
             //UsbChargerSimulator ucs = new UsbChargerSimulator();
             //Display d = new Display();
