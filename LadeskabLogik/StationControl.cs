@@ -28,7 +28,7 @@ namespace Ladeskab
 
         private string logFile = "logfile.txt"; // Navnet på systemets log-fil
         private IDisplay _display = new Display();
-        //IChangeControl _chargeControl = new ChargeControl(_charger, _display);
+        IChangeControl _chargeControl;
         public StationControl(IDoor doorStatus, IRfidReader rfidStatus)
         {
             doorStatus.DoorChangedEvents += HandleDoorStatusChangedEvent;//attacher 
@@ -67,6 +67,7 @@ namespace Ladeskab
             {
                 case LadeskabState.Available:
                     // Check for ladeforbindelse
+                    _chargeControl.IsConnected();//returnere en boolean 
                     if (_charger.Connected)
                     {
                         //_door.LockDoor();

@@ -20,5 +20,8 @@ namespace LadeskabLogik
 
 
         void DisplayDoorOpen();
+
+        void DoorOpen();
+        void DoorClose();
     }
 }

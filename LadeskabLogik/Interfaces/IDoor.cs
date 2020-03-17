@@ -11,5 +11,6 @@ namespace LadeskabLogik
         event EventHandler<DoorChangedEventArgs>DoorChangedEvents;
 
         void SetDoorStatus(bool newDoorStatus);
+      
     }
 }

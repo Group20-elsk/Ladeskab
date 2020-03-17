@@ -22,11 +22,13 @@ namespace LadeskabLogik
             }
         }
 
+
         protected virtual void OnDoorStatusChanged(DoorChangedEventArgs e)
         {
             DoorChangedEvents?.Invoke(this,e);//invoker alle dem som har 
         }
 
+        
 
     }
 }
