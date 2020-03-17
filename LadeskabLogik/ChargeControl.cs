@@ -29,21 +29,25 @@ namespace LadeskabLogik
             if (CurrentCurrent == 0.0)
             {
                 _display.DisplayNothing();
+                StopCharge();
             }
             else if (CurrentCurrent > 0.0 && CurrentCurrent <= 5.0)
             {
                 _display.DisplayFullyCharge();
-                OnNewCurrent(); //Måske fjern. Fra Pat. 
+                OnNewCurrent(); //Måske fjern. Fra Pat.
+                StopCharge();
             }
             else if (CurrentCurrent > 5.0 && CurrentCurrent <= 500.0)
             {
                 _display.DisplayCharging();
                 OnNewCurrent(); //Måske fjern. Fra Pat. 
+                StartCharge();
             }
             else if (CurrentCurrent > 500.0)
             {
                 _display.DisplayErrorCharging();
                 OnNewCurrent(); //Måske fjern. Fra Pat. 
+                StopCharge();
             }
 
         }
