@@ -21,18 +21,20 @@ namespace Ladeskab
 
         // Her mangler flere member variable
         private LadeskabState _state;
-        private IUsbCharger _charger;
+        private static IUsbCharger _charger = new UsbChargerSimulator();
         private int _oldId;
         public bool CurrentDoorStatus { get; set; }
         public bool CurrentRfidSensedStatus { get; set; }
 
         private string logFile = "logfile.txt"; // Navnet på systemets log-fil
-        private IChangeControl _chargeControl;
+        
         private IDoor _door;
-        IDisplay _display = new Display();
+        static IDisplay _display = new Display();
+        private IChangeControl _chargeControl = new ChargeControl(_charger, _display);
         public StationControl(IDoor doorStatus, IRfidReader rfidStatus)
         {
             doorStatus.DoorChangedEvents += HandleDoorStatusChangedEvent;//attacher 
+            _door = doorStatus;
             rfidStatus.RfidSensedEvents += HandleRfidStatusChangedEvent;//attacher
         }
 
