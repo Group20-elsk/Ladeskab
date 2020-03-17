@@ -36,6 +36,7 @@ namespace LadeskabAPP
                     case 'r':
                         _rfidReader.SetRfidReaderStatus(true);
                         break;
+                   
 
                 }
             }
