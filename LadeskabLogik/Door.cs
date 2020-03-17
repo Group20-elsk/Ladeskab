@@ -28,12 +28,12 @@ namespace LadeskabLogik
             DoorChangedEvents?.Invoke(this,e);//invoker alle dem som har 
         }
 
-        public void DoorOpen()
+        public void UnlockDoor()
         {
             Console.WriteLine("Døren er åbnet");
         }
 
-        public void DoorClose()
+        public void LockDoor()
         {
             Console.WriteLine("Døren er lukket");
         }
