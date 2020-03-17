@@ -20,10 +20,16 @@ namespace LadeskabLogik
             usbCharger.CurrentValueEvent += HandleCurrentEvent; //Attach
         }
 
+        public event EventHandler<CurrentEventArgs> CurrentValueEvent; //The connection point for Observers. //Fra Pat, måske slet
+
         public void HandleCurrentEvent(object sender, CurrentEventArgs e)   //Update
         {
             CurrentCurrent = e.Current; //Her lægges strøm værdien ind i den lokale variable
+            Regulate();
+        }
 
+        private void Regulate() //Ændring fra Pat 
+        {
             if (CurrentCurrent == 0.0)
             {
                 _display.DisplayNothing();
@@ -41,6 +47,7 @@ namespace LadeskabLogik
                 _display.DisplayErrorCharging();
             }
 
+            OnNewCurrent(); //Måske fjern. Fra Pat. 
         }
 
         public bool IsConnected()
@@ -57,5 +64,12 @@ namespace LadeskabLogik
         {
             _charger.StopCharge();
         }
+
+        // Måske fjern denne metode. Fra Pat. 
+        private void OnNewCurrent()
+        {
+            CurrentValueEvent?.Invoke(this, new CurrentEventArgs() { Current = this.CurrentCurrent });
+        }
+
     }
 }

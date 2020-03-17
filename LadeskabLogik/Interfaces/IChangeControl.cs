@@ -8,7 +8,10 @@ namespace LadeskabLogik
 {
     public interface IChangeControl
     {
-        void HandleCurrentEvent(object sender, CurrentEventArgs e);
+        // Event triggered on new current value
+        event EventHandler<CurrentEventArgs> CurrentValueEvent; //The Connection point for Observers. //Fra Pat. Måske slet 
+
+        //void HandleCurrentEvent(object sender, CurrentEventArgs e); Pat som har udkommenteret. Måske skal den ikke det. 
 
         bool IsConnected();
 
