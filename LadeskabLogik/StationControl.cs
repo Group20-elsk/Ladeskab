@@ -45,12 +45,12 @@ namespace Ladeskab
             CurrentDoorStatus = e.DoorStatus;
             if (CurrentDoorStatus == false)
             {
-                
+                _display.DisplayDoorClosed();
             }
 
             if (CurrentDoorStatus == true)
             {
-                Console.WriteLine("Tilslut telefon");
+                _display.DisplayDoorOpen();
             }
             
         }

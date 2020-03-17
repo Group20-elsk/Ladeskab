@@ -15,5 +15,10 @@ namespace LadeskabLogik
         void DisplayCharging();
 
         void DisplayErrorCharging();
+
+        void DisplayDoorClosed();
+
+
+        void DisplayDoorOpen();
     }
 }
