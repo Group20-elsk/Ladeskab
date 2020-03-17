@@ -28,5 +28,15 @@ namespace LadeskabLogik
         {
             Console.WriteLine("Fejlmeddelelse - Opladning");
         }
+
+        public void DisplayDoorClosed()
+        {
+            Console.WriteLine("Indlæs RFID");
+        }
+
+        public void DisplayDoorOpen()
+        {
+            Console.WriteLine("Tilslut telefon");
+        }
     }
 }

@@ -27,6 +27,7 @@ namespace Ladeskab
         public bool CurrentRfidSensedStatus { get; set; }
 
         private string logFile = "logfile.txt"; // Navnet på systemets log-fil
+        IDisplay _display = new Display();
 
         public StationControl(IDoor doorStatus, IRfidReader rfidStatus)
         {
@@ -44,7 +45,7 @@ namespace Ladeskab
             CurrentDoorStatus = e.DoorStatus;
             if (CurrentDoorStatus == false)
             {
-                Console.WriteLine("Indlæs RFID");
+                
             }
 
             if (CurrentDoorStatus == true)
