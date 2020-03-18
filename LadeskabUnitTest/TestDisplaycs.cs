@@ -22,8 +22,11 @@ namespace LadeskabUnitTest
         [Test]
         public void test()
         {
-
+            _uut.DisplayNothing();
+            Assert.That(consoleText.ToString(), Is.StringMatching("Display nothing"));
         }
 
     }
+
+
 }
