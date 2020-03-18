@@ -14,19 +14,21 @@ namespace LadeskabUnitTest
     public class TestChargeControl
     {
         private ChargeControl _uut;
-        private IUsbCharger usbCharger;
-        private IDisplay display;
+        private IUsbCharger _usbCharger;
+        private IDisplay _display;
 
 
         [SetUp]
         public void Setup()
         {
-            usbCharger = Substitute.For<IUsbCharger>(); 
-            display = Substitute.For<IDisplay>(); 
+            _usbCharger = Substitute.For<IUsbCharger>(); //Lavet fake af UsbChargerSimulator. 
+            _display = Substitute.For<IDisplay>(); //Lavet fake af Display. 
 
-            _uut = new ChargeControl(usbCharger, display);
+            _uut = new ChargeControl(_usbCharger, _display);
             _uut.CurrentCurrent = 0.0;
         }
+
+        //Lav nye tests!! 
 
         [Test]
         public void CurrentCurrent_CurrentSetToNewValue_NewCurrentValue_Is_500()
