@@ -10,7 +10,7 @@ using NUnit.Framework;
 namespace LadeskabUnitTest
 {
     [TestFixture]
-    class TestStationControl
+    public class TestStationControl
     {
         private StationControl _uut;
         private Door _door;
