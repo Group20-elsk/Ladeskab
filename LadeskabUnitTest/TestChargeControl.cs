@@ -25,8 +25,11 @@ namespace LadeskabUnitTest
             _display = Substitute.For<IDisplay>(); //Lavet fake af Display. 
 
             _uut = new ChargeControl(_usbCharger, _display); //ChargeControl skal have en usbCharger og et Display. 
-            //_uut.CurrentCurrent = 0.0;
+            _uut.CurrentCurrent = 0.0;
         }
+
+        //Tests af HandleCurrentEvent-metoden i klassen ChargeControl 
+        //Starter 
 
         // Tester om metoden DisplayNothing IKKE bliver kaldt med følgende værdier
         [TestCase(-0.1)]
@@ -40,7 +43,7 @@ namespace LadeskabUnitTest
             _display.DidNotReceive().DisplayNothing();
         }
 
-        // Tester om metoden DisplayNothing IKKE bliver kaldt med følgende værdi
+        // Tester om metoden DisplayNothing bliver kaldt med følgende værdi
         [TestCase(0.0)]
         public void CurrentCurrentValues_DoCallMethod_DisplayNothing(double current)
         {
@@ -116,6 +119,8 @@ namespace LadeskabUnitTest
 
         // Tester om metoden DisplayErrorCharging bliver kaldt med følgende værdier
         [TestCase(500.1)]
+        [TestCase(750.0)]
+        [TestCase(800.0)]
         public void CurrentCurrentValues_DoCallMethod_DisplayErrorCharging(double current)
         {
             _uut.StartCharge();
@@ -124,6 +129,8 @@ namespace LadeskabUnitTest
 
             _display.Received().DisplayErrorCharging();
         }
+
+        //Slutter
 
 
         //Tester at uut modtager event og modtager currentvalue fra eventet og at currentcurrent bliver sat til cc. 
@@ -140,40 +147,31 @@ namespace LadeskabUnitTest
             Assert.That(_uut.CurrentCurrent, Is.EqualTo(cc));
         }
 
+        //Tests af IsConnected-metoden i klassen ChargeControl
+
+        //Tests af StartCharge-metoden i klassen ChargeControl
+
+        //Tests af StopCharge-metoden i klassen ChargeControl
 
 
+        // Tests jeg lavede da jeg var forvirret...
+        //Starter
+        [Test]
+        public void CurrentCurrent_CurrentSetToNewValue_NewCurrentValue_Is_500()
+        {
+            _uut.CurrentCurrent = 500.0;
+            _uut.StartCharge();
+
+            Assert.That(_uut.CurrentCurrent, Is.EqualTo(500.0));
+        }
 
 
+        [Test]
+        public void CurrentCurrent_Is_Zero()
+        {
+            Assert.That(_uut.CurrentCurrent, Is.Zero);
+        }
 
-
-
-        //[Test]
-        //public void CurrentCurrent_CurrentSetToNewValue_NewCurrentValue_Is_500()
-        //{
-        //    _uut.CurrentCurrent = 500.0;
-        //    _uut.StartCharge();
-
-        //    Assert.That(_uut.CurrentCurrent, Is.EqualTo(500.0));
-        //}
-
-
-        //[Test]
-        //public void CurrentCurrent_Is_Zero()
-        //{
-        //    Assert.That(_uut.CurrentCurrent, Is.Zero);
-        //}
-
-        //[Test]
-        //public void ChargeControl_StopCharge_NewCurrentValue_IsEqualTo_0()
-        //{
-        //    _uut.CurrentCurrent = 500.0;
-
-        //    _uut.StopCharge();
-
-        //    Assert.That(_uut.CurrentCurrent, Is.EqualTo(0.0));
-        //}
-
-
-
+        //Slutter
     }
 }
