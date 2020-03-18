@@ -8,19 +8,20 @@ namespace LadeskabLogik
 {
     public interface IDisplay
     {
-        void DisplayNothing();
+        void writeDisplay(string message);
+        //void DisplayNothing();
 
-        void DisplayFullyCharge();
+        //void DisplayFullyCharge();
 
-        void DisplayCharging();
+        //void DisplayCharging();
 
-        void DisplayErrorCharging();
+        //void DisplayErrorCharging();
 
-        void DisplayDoorClosed();
+        //void DisplayDoorClosed();
 
 
-        void DisplayDoorOpen();
+        //void DisplayDoorOpen();
 
-      
+
     }
 }

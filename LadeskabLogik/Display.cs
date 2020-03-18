@@ -8,36 +8,46 @@ namespace LadeskabLogik
 {
     public class Display : IDisplay
     {
-        public void DisplayNothing()
-        {
-            Console.WriteLine("Display nothing");
-        }
+        private static IConsoleWriter _consoleWriter;
 
-        public void DisplayFullyCharge()
+        public Display(IConsoleWriter consoleWriter)
         {
-            Console.WriteLine("Telefon er fuldt opladet");
+            _consoleWriter = consoleWriter;
         }
-
-        public void DisplayCharging()
+        public void writeDisplay(string message)
         {
-            Console.WriteLine("Oplades...");
+            _consoleWriter.writeLine(message);
         }
+        //public void DisplayNothing()
+        //{
+        //    Console.WriteLine("Display nothing");
+        //}
+
+        //public void DisplayFullyCharge()
+        //{
+        //    Console.WriteLine("Telefon er fuldt opladet");
+        //}
+
+        //public void DisplayCharging()
+        //{
+        //    Console.WriteLine("Oplades...");
+        //}
 
 
-        public void DisplayErrorCharging()
-        {
-            Console.WriteLine("Fejlmeddelelse - Opladning");
-        }
+        //public void DisplayErrorCharging()
+        //{
+        //    Console.WriteLine("Fejlmeddelelse - Opladning");
+        //}
 
-        public void DisplayDoorClosed()
-        {
-            Console.WriteLine("Indlæs RFID");
-        }
+        //public void DisplayDoorClosed()
+        //{
+        //    Console.WriteLine("Indlæs RFID");
+        //}
 
-        public void DisplayDoorOpen()
-        {
-            Console.WriteLine("Tilslut telefon");
-        }
+        //public void DisplayDoorOpen()
+        //{
+        //    Console.WriteLine("Tilslut telefon");
+        //}
 
        
     }

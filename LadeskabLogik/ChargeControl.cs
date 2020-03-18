@@ -26,19 +26,19 @@ namespace LadeskabLogik
 
             if (CurrentCurrent == 0.0)
             {
-                _display.DisplayNothing();
+                _display.writeDisplay("Display nothing");
             }
             else if (CurrentCurrent > 0.0 && CurrentCurrent <= 5.0)
             {
-                _display.DisplayFullyCharge();
+                _display.writeDisplay("Telefon er fuldt opladet");
             }
             else if (CurrentCurrent > 5.0 && CurrentCurrent <= 500.0)
             {
-                _display.DisplayCharging();
+                _display.writeDisplay("Oplades...");
             }
             else if (CurrentCurrent > 500.0)
             {
-                _display.DisplayErrorCharging();
+                _display.writeDisplay("Fejlmeddelelse - Opladning");
             }
         }
 

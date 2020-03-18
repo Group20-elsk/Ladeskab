@@ -28,8 +28,10 @@ namespace Ladeskab
 
         private string logFile = "logfile.txt"; // Navnet på systemets log-fil
 
+        private static IConsoleWriter _consoleWriter = new ConsoleWriter();
+
         private IDoor _door;
-        static IDisplay _display = new Display();
+        static IDisplay _display = new Display(_consoleWriter);
         private IChangeControl _chargeControl = new ChargeControl(_charger, _display);
         public StationControl(IDoor doorStatus, IRfidReader rfidStatus)
         {
@@ -50,13 +52,13 @@ namespace Ladeskab
             CurrentDoorStatus = e.DoorStatus;
             if (CurrentDoorStatus == false && _state != LadeskabState.Locked)//lukket dør
             {
-                _display.DisplayDoorClosed();
+                _display.writeDisplay("Indlæs RFID");
                 _state = LadeskabState.Available;
             }
 
             if (CurrentDoorStatus == true && _state != LadeskabState.Locked)//åbnet dør
             {
-                _display.DisplayDoorOpen();
+                _display.writeDisplay("Tilslut telefon");
                 _state = LadeskabState.DoorOpen;
             }
             

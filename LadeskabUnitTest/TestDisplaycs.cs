@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using LadeskabLogik;
 using NUnit.Framework;
+using NSubstitute;
 
 namespace LadeskabUnitTest
 {
@@ -12,18 +13,21 @@ namespace LadeskabUnitTest
     public class TestDisplaycs
     {
         private Display _uut;
+        private IConsoleWriter _consoleWriter;
+
 
         [SetUp]
         public void Setup()
         {
-            _uut = new Display();
+            _consoleWriter = Substitute.For<IConsoleWriter>();
+            _uut = new Display(_consoleWriter);
         }
 
         [Test]
-        public void test()
+        public void DisplayNothing_()
         {
-            _uut.DisplayNothing();
-            Assert.That(consoleText.ToString(), Is.StringMatching("Display nothing"));
+            _uut.writeDisplay("TEST");
+            _consoleWriter.Received(1).writeLine(Arg.Is<string>(s=>s.Contains($"TEST")));
         }
 
     }
