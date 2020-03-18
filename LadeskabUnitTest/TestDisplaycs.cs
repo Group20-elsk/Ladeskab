@@ -22,13 +22,14 @@ namespace LadeskabUnitTest
             _consoleWriter = Substitute.For<IConsoleWriter>();
             _uut = new Display(_consoleWriter);
         }
-
+        
         [Test]
-        public void DisplayNothing_()
+        public void writeDisplay_writeTEST_recieved1callWithStringContainingTEST()
         {
             _uut.writeDisplay("TEST");
             _consoleWriter.Received(1).writeLine(Arg.Is<string>(s=>s.Contains($"TEST")));
         }
+        
 
     }
 

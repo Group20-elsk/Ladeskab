@@ -40,7 +40,8 @@ namespace LadeskabUnitTest
 
             _usbCharger.CurrentValueEvent += Raise.EventWith(new CurrentEventArgs { Current = current });
 
-            _display.DidNotReceive().DisplayNothing();
+            //_display.DidNotReceive().DisplayNothing();
+            _display.DidNotReceive().writeDisplay("Display nothing");
         }
 
         // Tester om metoden DisplayNothing bliver kaldt med følgende værdi
@@ -51,7 +52,8 @@ namespace LadeskabUnitTest
 
             _usbCharger.CurrentValueEvent += Raise.EventWith(new CurrentEventArgs { Current = current });
 
-            _display.Received().DisplayNothing();
+            //_display.Received().DisplayNothing();
+            _display.Received().writeDisplay("display nothing");
         }
 
 
@@ -64,7 +66,8 @@ namespace LadeskabUnitTest
 
             _usbCharger.CurrentValueEvent += Raise.EventWith(new CurrentEventArgs {Current = current});
 
-            _display.DidNotReceive().DisplayFullyCharge();
+            //_display.DidNotReceive().DisplayFullyCharge();
+            _display.DidNotReceive().writeDisplay("Telefon er fuldt opladet");
         }
 
         // Tester om metoden DisplayFullyCharged bliver kaldt med følgende værdier
@@ -77,7 +80,8 @@ namespace LadeskabUnitTest
 
             _usbCharger.CurrentValueEvent += Raise.EventWith(new CurrentEventArgs { Current = current });
 
-            _display.Received().DisplayFullyCharge();
+            //_display.Received().DisplayFullyCharge();
+            _display.DidNotReceive().writeDisplay("Telefon er fuldt opladet");
         }
 
         // Tester om metoden DisplayCharging IKKE bliver kaldt med følgende værdier
@@ -89,7 +93,8 @@ namespace LadeskabUnitTest
 
             _usbCharger.CurrentValueEvent += Raise.EventWith(new CurrentEventArgs { Current = current });
 
-            _display.DidNotReceive().DisplayCharging();
+            //_display.DidNotReceive().DisplayCharging();
+            _display.DidNotReceive().writeDisplay("Oplades...");
         }
 
         // Tester om metoden DisplayCharging bliver kaldt med følgende værdier
@@ -102,7 +107,8 @@ namespace LadeskabUnitTest
 
             _usbCharger.CurrentValueEvent += Raise.EventWith(new CurrentEventArgs { Current = current });
 
-            _display.Received().DisplayCharging();
+            //_display.Received().DisplayCharging();
+            _display.Received().writeDisplay("Oplades...");
         }
 
         // Tester om metoden DisplayErrorCharging IKKE bliver kaldt med følgende værdier
@@ -114,7 +120,8 @@ namespace LadeskabUnitTest
 
             _usbCharger.CurrentValueEvent += Raise.EventWith(new CurrentEventArgs { Current = current });
 
-            _display.DidNotReceive().DisplayErrorCharging();
+            //_display.DidNotReceive().DisplayErrorCharging();
+            _display.DidNotReceive().writeDisplay("Fejlmeddelelse - Opladning");
         }
 
         // Tester om metoden DisplayErrorCharging bliver kaldt med følgende værdier
@@ -127,7 +134,8 @@ namespace LadeskabUnitTest
 
             _usbCharger.CurrentValueEvent += Raise.EventWith(new CurrentEventArgs { Current = current });
 
-            _display.Received().DisplayErrorCharging();
+            //_display.Received().DisplayErrorCharging();
+            _display.Received().writeDisplay("Fejlmeddelelse - Opladning");
         }
 
         //Slutter
