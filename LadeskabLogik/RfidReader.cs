@@ -14,12 +14,8 @@ namespace LadeskabLogik
 
         public void SetRfidReaderStatus(bool _newRfidStatus)
         {
-            if (_newRfidStatus!=_oldRfidStatus )
-            {
-                OnRfidStatusChanged(new RfidSensedEventArgs{RfidSensed = _newRfidStatus});
-                _oldRfidStatus = _newRfidStatus;
-
-            }
+            OnRfidStatusChanged(new RfidSensedEventArgs { RfidSensed = _newRfidStatus });
+            _oldRfidStatus = _newRfidStatus;
         }
 
         protected virtual void OnRfidStatusChanged(RfidSensedEventArgs e)

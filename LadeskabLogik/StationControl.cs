@@ -27,7 +27,7 @@ namespace Ladeskab
         public bool CurrentRfidSensedStatus { get; set; }
 
         private string logFile = "logfile.txt"; // Navnet på systemets log-fil
-        
+
         private IDoor _door;
         static IDisplay _display = new Display();
         private IChangeControl _chargeControl = new ChargeControl(_charger, _display);
@@ -48,16 +48,16 @@ namespace Ladeskab
         private void HandleDoorStatusChangedEvent(object sender, DoorChangedEventArgs e)
         {
             CurrentDoorStatus = e.DoorStatus;
-            if (CurrentDoorStatus == false)//lukket dør
+            if (CurrentDoorStatus == false && _state != LadeskabState.Locked)//lukket dør
             {
                 _display.DisplayDoorClosed();
+                _state = LadeskabState.Available;
             }
 
-            if (CurrentDoorStatus == true)//åbnet dør
+            if (CurrentDoorStatus == true && _state != LadeskabState.Locked)//åbnet dør
             {
                 _display.DisplayDoorOpen();
-                _state = LadeskabState.DoorOpen; 
-
+                _state = LadeskabState.DoorOpen;
             }
             
         }

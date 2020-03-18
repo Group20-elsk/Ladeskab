@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LadeskabLogik
+namespace LadeskabUnitTest
 {
-    public class LogFile : ILog
+    class TestDoor
     {
-
     }
 }
