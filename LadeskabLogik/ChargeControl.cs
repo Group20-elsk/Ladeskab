@@ -14,7 +14,6 @@ namespace LadeskabLogik
 
         public ChargeControl(IUsbCharger usbCharger, IDisplay display)
         {
-            CurrentCurrent = 0.0; //Tilføjet af Pat for at lave tests. Skal måske fjernes. 
             _display = display;
             _charger = usbCharger;
             usbCharger.CurrentValueEvent += HandleCurrentEvent; //Attach
@@ -25,6 +24,7 @@ namespace LadeskabLogik
         public void HandleCurrentEvent(object sender, CurrentEventArgs e)   //Update
         {
             CurrentCurrent = e.Current; //Her lægges strøm værdien ind i den lokale variable
+            OnNewCurrent();
 
             if (CurrentCurrent == 0.0)
             {
@@ -33,19 +33,15 @@ namespace LadeskabLogik
             else if (CurrentCurrent > 0.0 && CurrentCurrent <= 5.0)
             {
                 _display.DisplayFullyCharge();
-                OnNewCurrent(); //Måske fjern. Fra Pat. 
             }
             else if (CurrentCurrent > 5.0 && CurrentCurrent <= 500.0)
             {
                 _display.DisplayCharging();
-                OnNewCurrent(); //Måske fjern. Fra Pat. 
             }
             else if (CurrentCurrent > 500.0)
             {
                 _display.DisplayErrorCharging();
-                OnNewCurrent(); //Måske fjern. Fra Pat. 
             }
-
         }
 
 

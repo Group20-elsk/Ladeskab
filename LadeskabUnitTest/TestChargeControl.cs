@@ -31,7 +31,6 @@ namespace LadeskabUnitTest
         }
 
 
-
         [Test]
         public void CurrentCurrent_CurrentSetToNewValue_EventFired()
         {
@@ -42,12 +41,20 @@ namespace LadeskabUnitTest
         }
 
         [Test]
+        public void CurrentCurrent_CurrentSetToSameValue_EventNOTFired()
+        {
+            _uut.CurrentCurrent = 0.0;
+
+            Assert.That(_receivedEventArgs, Is.Null);
+        }
+
+        [Test]
         public void CurrentCurrent_CurrentSetToNewValue_NewCurrentValue_Is_500()
         {
             _uut.CurrentCurrent = 500.0;
             _uut.StartCharge();
 
-            Assert.That(_receivedEventArgs.Current, Is.EqualTo(500.0));
+            Assert.That(_uut.CurrentCurrent, Is.EqualTo(500.0));
         }
 
 
@@ -66,7 +73,7 @@ namespace LadeskabUnitTest
         }
 
         [Test]
-        public void ChargeControl_StopCharge_When_Current_Is_Equel_To_500()
+        public void ChargeControl_StopCharge_NewCurrentValue_IsEqualTo_0()
         {
             _uut.CurrentCurrent = 500.0;
 
@@ -74,24 +81,6 @@ namespace LadeskabUnitTest
 
             Assert.That(_uut.CurrentCurrent, Is.EqualTo(0.0));
         }
-
-        [Test]
-        public void C()
-        {
-            _uut.CurrentCurrent = 499.0;
-
-            _uut.StartCharge();
-            Assert.That(_uut.CurrentCurrent, Is.EqualTo(500.0));
-        }
-
-        //[Test]
-        //public void p()
-        //{
-
-        //    Assert.That(_uut.CurrentCurrent, Is.Zero);
-        //}
-
-
 
 
 
