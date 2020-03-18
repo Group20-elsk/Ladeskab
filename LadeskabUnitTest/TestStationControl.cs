@@ -52,8 +52,8 @@ namespace LadeskabUnitTest
         [TestCase(false)]
         public void TestCurrentRFIDStatus(bool RFIDStatus) //Value-based test
         {
-            _uut.CurrentDoorStatus = RFIDStatus;
-            Assert.That(_uut.CurrentDoorStatus, Is.EqualTo(RFIDStatus));
+            _uut.CurrentRfidSensedStatus = RFIDStatus;
+            Assert.That(_uut.CurrentRfidSensedStatus, Is.EqualTo(RFIDStatus));
         }
     }
 }
