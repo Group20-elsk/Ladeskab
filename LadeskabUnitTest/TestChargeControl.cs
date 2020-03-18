@@ -102,6 +102,29 @@ namespace LadeskabUnitTest
             _display.Received().DisplayCharging();
         }
 
+        // Tester om metoden DisplayErrorCharging IKKE bliver kaldt med følgende værdier
+        [TestCase(499.9)]
+        [TestCase(500.0)]
+        public void CurrentCurrentValues_DoNOTCallMethod_DisplayErrorCharging(double current)
+        {
+            _uut.StartCharge();
+
+            _usbCharger.CurrentValueEvent += Raise.EventWith(new CurrentEventArgs { Current = current });
+
+            _display.DidNotReceive().DisplayErrorCharging();
+        }
+
+        // Tester om metoden DisplayErrorCharging bliver kaldt med følgende værdier
+        [TestCase(500.1)]
+        public void CurrentCurrentValues_DoCallMethod_DisplayErrorCharging(double current)
+        {
+            _uut.StartCharge();
+
+            _usbCharger.CurrentValueEvent += Raise.EventWith(new CurrentEventArgs { Current = current });
+
+            _display.Received().DisplayErrorCharging();
+        }
+
 
         //Tester at uut modtager event og modtager currentvalue fra eventet og at currentcurrent bliver sat til cc. 
         [TestCase(0.0)]
