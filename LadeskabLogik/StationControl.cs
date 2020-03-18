@@ -51,6 +51,7 @@ namespace Ladeskab
             if (CurrentDoorStatus == false)//lukket dør
             {
                 _display.DisplayDoorClosed();
+                _state = LadeskabState.Available;
             }
 
             if (CurrentDoorStatus == true)//åbnet dør
