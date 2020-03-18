@@ -22,7 +22,6 @@ namespace LadeskabLogik
             }
         }
 
-
         protected virtual void OnDoorStatusChanged(DoorChangedEventArgs e)
         {
             DoorChangedEvents?.Invoke(this,e);//invoker alle dem som har 
@@ -37,8 +36,5 @@ namespace LadeskabLogik
         {
             Console.WriteLine("Døren er lukket");
         }
-
-
-
     }
 }
