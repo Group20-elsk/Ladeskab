@@ -17,7 +17,7 @@ namespace LadeskabUnitTest
         private RfidReader _rfidReader;
 
         [SetUp]
-        public void Setup()
+        public void Setup() //Setup for fakes
         {
             _door= new Door();
             _rfidReader = new RfidReader();
@@ -26,7 +26,7 @@ namespace LadeskabUnitTest
 
         [TestCase(true)]
         [TestCase(false)]
-        public void TestDoorStatus(bool doorStatus)
+        public void TestDoorStatus(bool doorStatus) //Interaction-based test
         {
             _door.SetDoorStatus(doorStatus);
             Assert.That(_uut.CurrentDoorStatus, Is.EqualTo(doorStatus));
@@ -34,10 +34,26 @@ namespace LadeskabUnitTest
 
         [TestCase(true)]
         [TestCase(false)]
-        public void TestRFIDreaderStatus(bool RFIDstatus)
+        public void TestCurrentDoorStatus(bool doorStatus) //Value-based test
+        {
+            _uut.CurrentDoorStatus = doorStatus;
+            Assert.That(_uut.CurrentDoorStatus, Is.EqualTo(doorStatus));
+        }
+
+        [TestCase(true)]
+        [TestCase(false)]
+        public void TestRFIDreaderStatus(bool RFIDstatus) //Interaction-based test
         {
             _rfidReader.SetRfidReaderStatus(RFIDstatus);
             Assert.That(_uut.CurrentRfidSensedStatus, Is.EqualTo(RFIDstatus));
+        }
+
+        [TestCase(true)]
+        [TestCase(false)]
+        public void TestCurrentRFIDStatus(bool RFIDStatus) //Value-based test
+        {
+            _uut.CurrentDoorStatus = RFIDStatus;
+            Assert.That(_uut.CurrentDoorStatus, Is.EqualTo(RFIDStatus));
         }
     }
 }
