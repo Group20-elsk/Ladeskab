@@ -5,6 +5,7 @@ using System.Runtime.Remoting.Channels;
 using System.Text;
 using System.Threading.Tasks;
 using LadeskabLogik;
+using NSubstitute;
 using NUnit.Framework;
 
 namespace LadeskabUnitTest
@@ -13,40 +14,21 @@ namespace LadeskabUnitTest
     public class TestChargeControl
     {
         private ChargeControl _uut;
-        private IUsbCharger usbCharger = new UsbChargerSimulator();
-        private IDisplay display = new Display();
-        private CurrentEventArgs _receivedEventArgs;
+        private IUsbCharger _usbCharger;
+        private IDisplay _display;
+
 
         [SetUp]
         public void Setup()
         {
-            _receivedEventArgs = null;
+            _usbCharger = Substitute.For<IUsbCharger>(); //Lavet fake af UsbChargerSimulator. 
+            _display = Substitute.For<IDisplay>(); //Lavet fake af Display. 
 
-            _uut = new ChargeControl(usbCharger, display);
+            _uut = new ChargeControl(_usbCharger, _display);
             _uut.CurrentCurrent = 0.0;
-
-            //Event listener to chech the event occurrence and event data 
-            _uut.CurrentValueEvent += (o, args) => { _receivedEventArgs = args; };
-
         }
 
-
-        [Test]
-        public void CurrentCurrent_CurrentSetToNewValue_EventFired()
-        {
-            _uut.CurrentCurrent = 500.0;
-            _uut.StartCharge();
-
-            Assert.That(_receivedEventArgs, Is.Not.Null);
-        }
-
-        [Test]
-        public void CurrentCurrent_CurrentSetToSameValue_EventNOTFired()
-        {
-            _uut.CurrentCurrent = 0.0;
-
-            Assert.That(_receivedEventArgs, Is.Null);
-        }
+        //Lav nye tests!! 
 
         [Test]
         public void CurrentCurrent_CurrentSetToNewValue_NewCurrentValue_Is_500()
