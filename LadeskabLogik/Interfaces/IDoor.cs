@@ -14,5 +14,6 @@ namespace LadeskabLogik
         void UnlockDoor();
         void LockDoor();
 
+
     }
 }

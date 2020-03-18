@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using Ladeskab;
@@ -16,6 +17,8 @@ namespace LadeskabAPP
             Console.WriteLine("To open the door, press o");
             Console.WriteLine("To close the door, press c");
             Console.WriteLine("To use RFID, press r");
+
+            
             IDoor _door = new Door();
             IRfidReader _rfidReader = new RfidReader();
             StationControl _stationControl = new StationControl(_door,_rfidReader);
