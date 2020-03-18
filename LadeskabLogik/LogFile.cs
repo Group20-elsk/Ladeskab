@@ -8,5 +8,6 @@ namespace LadeskabLogik
 {
     public class LogFile : ILog
     {
+
     }
 }

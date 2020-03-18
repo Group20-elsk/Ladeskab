@@ -27,7 +27,7 @@ namespace Ladeskab
         public bool CurrentRfidSensedStatus { get; set; }
 
         private string logFile = "logfile.txt"; // Navnet på systemets log-fil
-        
+
         private IDoor _door;
         static IDisplay _display = new Display();
         private IChangeControl _chargeControl = new ChargeControl(_charger, _display);
