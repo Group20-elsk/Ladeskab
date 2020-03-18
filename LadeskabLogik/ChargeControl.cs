@@ -38,7 +38,7 @@ namespace LadeskabLogik
             }
             else if (CurrentCurrent > 500.0)
             {
-                _display.DisplayErrorCharging();
+                _display.DisplayErrorCharging(); 
             }
         }
 
@@ -57,7 +57,5 @@ namespace LadeskabLogik
         {
             _charger.StopCharge();
         }
-
-
     }
 }
