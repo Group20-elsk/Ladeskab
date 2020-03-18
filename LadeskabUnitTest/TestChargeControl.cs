@@ -53,7 +53,7 @@ namespace LadeskabUnitTest
             _usbCharger.CurrentValueEvent += Raise.EventWith(new CurrentEventArgs { Current = current });
 
             //_display.Received().DisplayNothing();
-            _display.Received().writeDisplay("display nothing");
+            _display.Received().writeDisplay("Display nothing");
         }
 
 
@@ -81,7 +81,7 @@ namespace LadeskabUnitTest
             _usbCharger.CurrentValueEvent += Raise.EventWith(new CurrentEventArgs { Current = current });
 
             //_display.Received().DisplayFullyCharge();
-            _display.DidNotReceive().writeDisplay("Telefon er fuldt opladet");
+            _display.Received().writeDisplay("Telefon er fuldt opladet");
         }
 
         // Tester om metoden DisplayCharging IKKE bliver kaldt med følgende værdier
