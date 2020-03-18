@@ -24,7 +24,7 @@ namespace LadeskabUnitTest
         }
         
         [Test]
-        public void writeDisplay_writeTEST_recieved1callWithStringContainingTEST()
+        public void writeDisplay_printTEST_recieved1callWithStringContainingTEST()
         {
             _uut.writeDisplay("TEST");
             _consoleWriter.Received(1).writeLine(Arg.Is<string>(s=>s.Contains($"TEST")));

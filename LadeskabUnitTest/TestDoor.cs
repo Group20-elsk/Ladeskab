@@ -24,7 +24,7 @@ namespace LadeskabUnitTest
         }
 
         [Test]
-        public void test()
+        public void SetDoorStatus_DoorStatusChangesToTrue_DoorStatusIsTrue()
         {
             _uut.SetDoorStatus(false); //DoorStatus sættes til at være false
             _uut.SetDoorStatus(true); // DoorStatus sættes til at true, således der sker en ændring og dermed et event
@@ -32,7 +32,7 @@ namespace LadeskabUnitTest
         }
 
         [Test]
-        public void test2()
+        public void SetDoorStatus_DoorStatusChangesToFalse_DoorStatusIsFalse()
         {
             _uut.SetDoorStatus(true); //DoorStatus sættes til at være true
             _uut.SetDoorStatus(false); // DoorStatus sættes til at være, således der sker en ændring og dermed et event

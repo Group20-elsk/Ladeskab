@@ -25,14 +25,14 @@ namespace LadeskabUnitTest
         }
 
         [Test]
-        public void test()
+        public void SetRfidReaderStatus_SetRfidReaderStatusChangedToTrue_RfidSensedIsTrue()
         {
             _uut.SetRfidReaderStatus(true);
             Assert.That(_recivedEventArgs.RfidSensed, Is.True);
         }
 
         [Test]
-        public void test2()
+        public void SetRfidReaderStatus_SetRfidReaderStatusChangedToFalse_RfidSensedIsFalse()
         {
             _uut.SetRfidReaderStatus(false);
             Assert.That(_recivedEventArgs.RfidSensed, Is.False);
