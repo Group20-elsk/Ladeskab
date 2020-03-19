@@ -32,7 +32,7 @@ namespace Ladeskab
 
         private IDoor _door;
         static IDisplay _display = new Display(_consoleWriter);
-        private IChangeControl _chargeControl = new ChargeControl(_charger, _display);
+        private IChargeControl _chargeControl = new ChargeControl(_charger, _display);
         public StationControl(IDoor doorStatus, IRfidReader rfidStatus)
         {
             doorStatus.DoorChangedEvents += HandleDoorStatusChangedEvent;//attacher 

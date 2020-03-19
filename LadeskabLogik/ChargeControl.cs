@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LadeskabLogik
 {
-    public class ChargeControl : IChangeControl
+    public class ChargeControl : IChargeControl
     {
         public double CurrentCurrent { get; set; }
         private IDisplay _display;

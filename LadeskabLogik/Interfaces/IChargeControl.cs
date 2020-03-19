@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LadeskabLogik
 {
-    public interface IChangeControl
+    public interface IChargeControl
     {
         bool IsConnected();
 
