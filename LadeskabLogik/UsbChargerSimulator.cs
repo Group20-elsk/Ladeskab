@@ -32,7 +32,7 @@ namespace LadeskabLogik
             _timer = new System.Timers.Timer();
             _timer.Enabled = false;
             _timer.Interval = CurrentTickInterval;
-            _timer.Elapsed += TimerOnElapsed;
+            _timer.Elapsed += TimerOnElapsed;       //Betyder dette at metoden bliver kaldt her? -Kia
         }
 
         private void TimerOnElapsed(object sender, ElapsedEventArgs e)
