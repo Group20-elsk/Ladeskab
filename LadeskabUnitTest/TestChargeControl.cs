@@ -159,6 +159,8 @@ namespace LadeskabUnitTest
         //Tests af IsConnected-metoden i klassen ChargeControl
         //Starter 
 
+            //Mangler flere tests her! 
+
         //Tester usbCharger som en stub. Ser på propertien "Connected" og at den IKKE er connected. 
         [Test]
         public void USBChargerIsNOTConnected_ConnectedErFalse_ReturnsEqualToFalse()
