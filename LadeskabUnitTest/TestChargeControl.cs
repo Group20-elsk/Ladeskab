@@ -99,6 +99,7 @@ namespace LadeskabUnitTest
 
         // Tester om metoden DisplayCharging bliver kaldt med følgende værdier
         [TestCase(5.1)]
+        [TestCase(6.7)]
         [TestCase(499.1)]
         [TestCase(500.0)]
         public void CurrentCurrentValues_DoCallMethod_DisplayCharging(double current)
@@ -146,7 +147,7 @@ namespace LadeskabUnitTest
         [TestCase(0.1)]
         [TestCase(0.4)]
         [TestCase(5.0)]
-        [TestCase(0.6)]
+        [TestCase(5.1)]
         [TestCase(499.0)]
         [TestCase(500.0)] //Spørg Frank 
         public void CurrentChanged_CurrentCurrentIsCorrect(double cc)
