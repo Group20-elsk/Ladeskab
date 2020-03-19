@@ -20,6 +20,7 @@ namespace LadeskabUnitTest
         [SetUp]
         public void Setup() //Setup for fakes
         {
+            _consoleWriter = new ConsoleWriter();
             _door= new Door(_consoleWriter);
             _rfidReader = new RfidReader();
             _uut = new StationControl(_door,_rfidReader);
