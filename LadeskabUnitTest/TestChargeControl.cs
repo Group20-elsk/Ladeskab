@@ -197,6 +197,15 @@ namespace LadeskabUnitTest
             Assert.AreNotEqual(_usbCharger.Connected, true);
         }
 
+        //Tester om Connected er true i USBCharger, når UUT.IsConnected 
+        [Test]
+        public void ChargeControlIsConnected_USBChargerConnected_IsTrue()
+        {
+            _uut.IsConnected();
+
+            _usbCharger.Connected.Returns(true);
+        }
+
 
         //Slutter
 
@@ -215,7 +224,7 @@ namespace LadeskabUnitTest
 
         //USBCharger som en mock. Ser om StartCharge blev kaldt i UsbCharger. 
         [Test]
-        public void C1()
+        public void ChargeControlStartCharge_USBCharger_DidNotReceiveStartCharge()
         {
             _uut.StartCharge();
 
@@ -230,7 +239,7 @@ namespace LadeskabUnitTest
 
         //USBCharger som en mock. Ser om StopCharge blev kaldt i UsbCharger. 
         [Test]
-        public void Ci()
+        public void ChargeControlStopCharge_USBCharger_StopCharge()
         {
             _uut.StopCharge();
 
@@ -239,7 +248,7 @@ namespace LadeskabUnitTest
 
         //USBCharger som en mock. Ser om StopCharge blev kaldt i UsbCharger. 
         [Test]
-        public void C2()
+        public void ChargeControlStopCharge_DitNotReceiveStopCharge()
         {
             _uut.StopCharge();
 
