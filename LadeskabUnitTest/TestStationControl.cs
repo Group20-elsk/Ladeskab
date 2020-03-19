@@ -15,11 +15,12 @@ namespace LadeskabUnitTest
         private StationControl _uut;
         private Door _door;
         private RfidReader _rfidReader;
+        private IConsoleWriter _consoleWriter;
 
         [SetUp]
         public void Setup() //Setup for fakes
         {
-            _door= new Door();
+            _door= new Door(_consoleWriter);
             _rfidReader = new RfidReader();
             _uut = new StationControl(_door,_rfidReader);
         }

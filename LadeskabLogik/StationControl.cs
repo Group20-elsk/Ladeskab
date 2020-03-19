@@ -74,7 +74,7 @@ namespace Ladeskab
                     _chargeControl.IsConnected();//returnere en boolean 
                     if (_charger.Connected)
                     {
-                        _door.LockDoor();
+                        _door.LockDoor("Døren er lukket");
                         _charger.StartCharge();
                         _oldId = id;
                         using (var writer = File.AppendText(logFile))
@@ -101,7 +101,7 @@ namespace Ladeskab
                     if (id == _oldId)
                     {
                         _charger.StopCharge();
-                        _door.UnlockDoor();
+                        _door.UnlockDoor("Døren er åbnet");
                         using (var writer = File.AppendText(logFile))
                         {
                             writer.WriteLine(DateTime.Now + ": Skab låst op med RFID: {0}", id);

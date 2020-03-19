@@ -18,8 +18,8 @@ namespace LadeskabAPP
             Console.WriteLine("To close the door, press c");
             Console.WriteLine("To use RFID, press r");
 
-            
-            IDoor _door = new Door();
+            IConsoleWriter _consoleWriter=new ConsoleWriter();
+            IDoor _door = new Door(_consoleWriter);
             IRfidReader _rfidReader = new RfidReader();
             StationControl _stationControl = new StationControl(_door,_rfidReader);
 
