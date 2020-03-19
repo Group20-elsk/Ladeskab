@@ -42,13 +42,13 @@ namespace LadeskabUnitTest
             Assert.That(_uut.CurrentDoorStatus, Is.EqualTo(doorStatus));
         }
 
-        //[TestCase(true)]
-        //[TestCase(false)]
-        //public void TestRFIDreaderStatus(bool RFIDstatus) //Interaction-based test
-        //{
-        //    _rfidReader.SetRfidReaderStatus(RFIDstatus);
-        //    Assert.That(_uut.CurrentRfidSensedStatus, Is.EqualTo(RFIDstatus));
-        //}
+        [TestCase(true)]
+        [TestCase(false)]
+        public void TestRFIDreaderStatus(bool RFIDstatus) //Interaction-based test
+        {
+            _rfidReader.SetRfidReaderStatus(RFIDstatus);
+            Assert.That(_uut.CurrentRfidSensedStatus, Is.EqualTo(RFIDstatus));
+        }
 
         [TestCase(true)]
         [TestCase(false)]
