@@ -157,8 +157,46 @@ namespace LadeskabUnitTest
         }
 
         //Tests af IsConnected-metoden i klassen ChargeControl
+        //Starter 
+
+        //Tester usbCharger som en stub. Ser på propertien "Connected" og at den IKKE er connected. 
+        [Test]
+        public void USBChargerIsNOTConnected_ConnectedErFalse_ReturnsEqualToFalse()
+        {
+            _usbCharger.Connected.Returns(false); 
+
+            Assert.AreEqual(_usbCharger.Connected, false);
+        }
+
+        //Tester usbCharger som en stub. Ser på propertien "Connected" og at den ER connected. 
+        [Test]
+        public void USBChargerISConnected_ConnectedErTrue_Returns_NotEqualToFalse()
+        {
+            _usbCharger.Connected.Returns(true);
+
+            Assert.AreNotEqual(_usbCharger.Connected, false);
+        }
+
+        //Tester usbCharger som en stub. Ser på propertien "Connected" og at den ER connected. 
+        [Test]
+        public void USBChargerISConnected_ConnectedErTrue_Returns_EqualToTrue()
+        {
+            _usbCharger.Connected.Returns(true);
+
+            Assert.AreEqual(_usbCharger.Connected, true);
+        }
+
+        //Tester usbCharger som en stub. Ser på propertien "Connected" og at den IKKE er connected. 
+        [Test]
+        public void USBChargerISConnected_ConnectedErFalse_Returns_NotEqualToTrue()
+        {
+            _usbCharger.Connected.Returns(false);
+
+            Assert.AreNotEqual(_usbCharger.Connected, true);
+        }
 
         //Tests af StartCharge-metoden i klassen ChargeControl
+
 
         //Tests af StopCharge-metoden i klassen ChargeControl
 
