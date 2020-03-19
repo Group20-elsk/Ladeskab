@@ -25,7 +25,7 @@ namespace LadeskabUnitTest
             _display = Substitute.For<IDisplay>(); //Lavet fake af Display. 
 
             _uut = new ChargeControl(_usbCharger, _display); //ChargeControl skal have en usbCharger og et Display. 
-            _uut.CurrentCurrent = 0.0;
+            //_uut.CurrentCurrent = 0.0;
         }
 
         //Tests af HandleCurrentEvent-metoden i klassen ChargeControl 
@@ -195,10 +195,57 @@ namespace LadeskabUnitTest
             Assert.AreNotEqual(_usbCharger.Connected, true);
         }
 
+
+        //Slutter
+
+
         //Tests af StartCharge-metoden i klassen ChargeControl
+        //Starter 
+
+        //USBCharger som en mock. Ser om StartCharge blev kaldt i UsbCharger. 
+        [Test]
+        public void ChargeControlStartCharge_USBCharger_StartCharge()
+        {
+            _uut.StartCharge(); 
+
+            _usbCharger.Received().StartCharge();
+        }
+
+        //USBCharger som en mock. Ser om StartCharge blev kaldt i UsbCharger. 
+        [Test]
+        public void C1()
+        {
+            _uut.StartCharge();
+
+            _usbCharger.DidNotReceive().StopCharge();
+        }
+
+        //Slutter 
 
 
         //Tests af StopCharge-metoden i klassen ChargeControl
+        //Starter 
+
+        //USBCharger som en mock. Ser om StopCharge blev kaldt i UsbCharger. 
+        [Test]
+        public void Ci()
+        {
+            _uut.StopCharge();
+
+            _usbCharger.Received().StopCharge();
+        }
+
+        //USBCharger som en mock. Ser om StopCharge blev kaldt i UsbCharger. 
+        [Test]
+        public void C2()
+        {
+            _uut.StopCharge();
+
+            _usbCharger.DidNotReceive().StartCharge();
+        }
+
+
+        //Slutter 
 
 
         // Tests jeg lavede da jeg var forvirret...
@@ -211,7 +258,6 @@ namespace LadeskabUnitTest
 
             Assert.That(_uut.CurrentCurrent, Is.EqualTo(500.0));
         }
-
 
         [Test]
         public void CurrentCurrent_Is_Zero()
