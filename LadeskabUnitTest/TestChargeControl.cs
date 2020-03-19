@@ -159,7 +159,14 @@ namespace LadeskabUnitTest
         //Tests af IsConnected-metoden i klassen ChargeControl
         //Starter 
 
-            //Mangler flere tests her! 
+        //Tester om Connected er true i USBCharger, når UUT.IsConnected 
+        [Test]
+        public void ChargeControlIsConnected_USBChargerConnected_IsTrue()
+        {
+            _uut.IsConnected();
+
+            _usbCharger.Connected.Returns(true);
+        }
 
         //Tester usbCharger som en stub. Ser på propertien "Connected" og at den IKKE er connected. 
         [Test]
@@ -197,14 +204,6 @@ namespace LadeskabUnitTest
             Assert.AreNotEqual(_usbCharger.Connected, true);
         }
 
-        //Tester om Connected er true i USBCharger, når UUT.IsConnected 
-        [Test]
-        public void ChargeControlIsConnected_USBChargerConnected_IsTrue()
-        {
-            _uut.IsConnected();
-
-            _usbCharger.Connected.Returns(true);
-        }
 
 
         //Slutter
@@ -231,6 +230,8 @@ namespace LadeskabUnitTest
             _usbCharger.DidNotReceive().StopCharge();
         }
 
+
+
         //Slutter 
 
 
@@ -255,8 +256,17 @@ namespace LadeskabUnitTest
             _usbCharger.DidNotReceive().StartCharge();
         }
 
+        [Test]
+        public void USBChargerCurrentValue_IsEqualTo_0_When_ChargeControlStopCharge()
+        {
+            _uut.StopCharge();
+
+            Assert.That(_usbCharger.CurrentValue, Is.EqualTo(0.0));
+        }
+
 
         //Slutter 
+
 
 
         // Tests jeg lavede da jeg var forvirret...

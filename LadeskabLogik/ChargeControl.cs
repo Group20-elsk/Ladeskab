@@ -16,7 +16,7 @@ namespace LadeskabLogik
         {
             _display = display;
             _charger = usbCharger;
-            CurrentCurrent = 0.0; 
+            //CurrentCurrent = 0.0; 
             usbCharger.CurrentValueEvent += HandleCurrentEvent; //Attach
         }
 
