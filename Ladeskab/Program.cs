@@ -21,7 +21,8 @@ namespace LadeskabAPP
             IConsoleWriter _consoleWriter=new ConsoleWriter();
             IDoor _door = new Door(_consoleWriter);
             IRfidReader _rfidReader = new RfidReader();
-            StationControl _stationControl = new StationControl(_door,_rfidReader);
+            ILog _log = new LogFile();
+            StationControl _stationControl = new StationControl(_door,_rfidReader, _log);
 
             while (true)
             {
