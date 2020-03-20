@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using LadeskabLogik;
-using NSubstitute;
 using NUnit.Framework;
 using NUnit.Framework.Internal;
 
@@ -18,7 +18,7 @@ namespace LadeskabUnitTest
         [SetUp]
         public void Setup()
         {
-            _uut = Substitute.For<LogFile>();
+            _uut = new LogFile();
         }
 
         [TestCase(1)]
