@@ -80,11 +80,6 @@ namespace Ladeskab
                         _charger.StartCharge();
                         _oldId = id;
                         _logFile.LogLadeskabAvailable(id);
-                        //using (var writer = File.AppendText(logFile))
-                        //{
-                        //    writer.WriteLine(DateTime.Now + ": Skab låst med RFID: {0}", id);
-                        //}
-
                         Console.WriteLine("Skabet er låst og din telefon lades. Brug dit RFID tag til at låse op.");
                         _state = LadeskabState.Locked;
                     }
@@ -106,11 +101,6 @@ namespace Ladeskab
                         _charger.StopCharge();
                         _door.UnlockDoor("Døren er åbnet");
                         _logFile.LogLadeskabLocked(id);
-                        //using (var writer = File.AppendText(logFile))
-                        //{
-                        //    writer.WriteLine(DateTime.Now + ": Skab låst op med RFID: {0}", id);
-                        //}
-
                         Console.WriteLine("Tag din telefon ud af skabet og luk døren");
                         _state = LadeskabState.Available;
                     }
@@ -123,6 +113,6 @@ namespace Ladeskab
             }
         }
 
-        // Her mangler de andre trigger handlere
+        /
     }
 }
