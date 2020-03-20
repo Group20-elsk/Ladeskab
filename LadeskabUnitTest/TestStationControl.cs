@@ -13,8 +13,8 @@ namespace LadeskabUnitTest
     public class TestStationControl
     {
         private StationControl _uut;
-        private Door _door;
-        private RfidReader _rfidReader;
+        private IDoor _door;
+        private IRfidReader _rfidReader;
         private IConsoleWriter _consoleWriter;
         private ILog _log;
 
@@ -22,7 +22,7 @@ namespace LadeskabUnitTest
         public void Setup() //Setup for fakes
         {
             _consoleWriter = new ConsoleWriter();
-            _door= new Door(_consoleWriter);
+            _door = new Door(_consoleWriter);
             _rfidReader = new RfidReader();
             _log = new LogFile();
             _uut = new StationControl(_door,_rfidReader,_log);
