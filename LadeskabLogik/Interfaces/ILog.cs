@@ -8,6 +8,7 @@ namespace LadeskabLogik
 {
     public interface ILog
     {
-         
+        void LogLadeskabAvailable(int id);
+        void LogLadeskabLocked(int id);
     }
 }
