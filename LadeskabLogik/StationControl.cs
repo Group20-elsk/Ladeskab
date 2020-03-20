@@ -27,8 +27,6 @@ namespace Ladeskab
         public bool CurrentDoorStatus { get; set; }
         public bool CurrentRfidSensedStatus { get; set; }
 
-        //private string logFile = "logfile.txt"; // Navnet på systemets log-fil
-
         private static IConsoleWriter _consoleWriter = new ConsoleWriter();
 
         private IDoor _door;
