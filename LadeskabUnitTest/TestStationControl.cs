@@ -16,6 +16,7 @@ namespace LadeskabUnitTest
         private Door _door;
         private RfidReader _rfidReader;
         private IConsoleWriter _consoleWriter;
+        private ILog _log;
 
         [SetUp]
         public void Setup() //Setup for fakes
@@ -23,7 +24,8 @@ namespace LadeskabUnitTest
             _consoleWriter = new ConsoleWriter();
             _door= new Door(_consoleWriter);
             _rfidReader = new RfidReader();
-            _uut = new StationControl(_door,_rfidReader);
+            _log = new LogFile();
+            _uut = new StationControl(_door,_rfidReader,_log);
         }
 
         [TestCase(true)]
