@@ -8,5 +8,6 @@ namespace LadeskabLogik.Interfaces
 {
     public interface IStationControl
     {
+        //Hvorfor er der ikke lavet metoder herinde? 
     }
 }
