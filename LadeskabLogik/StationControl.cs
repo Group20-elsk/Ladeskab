@@ -6,10 +6,11 @@ using System.Net.Configuration;
 using System.Text;
 using System.Threading.Tasks;
 using LadeskabLogik;
+using LadeskabLogik.Interfaces;
 
 namespace Ladeskab
 {
-    public class StationControl
+    public class StationControl 
     {
         // Enum med tilstande ("states") svarende til tilstandsdiagrammet for klassen
         private enum LadeskabState
@@ -33,7 +34,7 @@ namespace Ladeskab
         private ILog _log;
         static IDisplay _display = new Display(_consoleWriter);
         private IChargeControl _chargeControl = new ChargeControl(_charger, _display);
-        public StationControl(IDoor doorStatus, IRfidReader rfidStatus, ILog log)
+        public StationControl(IDoor doorStatus, IRfidReader rfidStatus, ILog log)//tilføj instanser af ..... se klassediagram
         {
             doorStatus.DoorChangedEvents += HandleDoorStatusChangedEvent;//attacher 
             _door = doorStatus;
@@ -45,7 +46,6 @@ namespace Ladeskab
         {
             CurrentRfidSensedStatus = e.RfidSensed;
             RfidDetected(10);//Evt. ændre ID senere
-
         }
 
         private void HandleDoorStatusChangedEvent(object sender, DoorChangedEventArgs e)

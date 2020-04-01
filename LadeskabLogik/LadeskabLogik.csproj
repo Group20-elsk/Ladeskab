@@ -51,7 +51,6 @@
     <Compile Include="Interfaces\ILog.cs" />
     <Compile Include="Interfaces\IDisplay.cs" />
     <Compile Include="Interfaces\IDoor.cs" />
-    <Compile Include="Interfaces\IStationControl.cs" />
     <Compile Include="Interfaces\IUsbCharger.cs" />
     <Compile Include="Interfaces\IRfidReader.cs" />
     <Compile Include="LogFile.cs" />

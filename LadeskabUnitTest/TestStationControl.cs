@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Ladeskab;
 using LadeskabLogik;
 using NUnit.Framework;
+using NSubstitute;
 
 namespace LadeskabUnitTest
 {
@@ -21,10 +22,10 @@ namespace LadeskabUnitTest
         [SetUp]
         public void Setup() //Setup for fakes
         {
-            _consoleWriter = new ConsoleWriter();
-            _door = new Door(_consoleWriter);
-            _rfidReader = new RfidReader();
-            _log = new LogFile();
+            _consoleWriter = Substitute.For<IConsoleWriter>();
+            _door = Substitute.For<IDoor>();
+            _rfidReader = Substitute.For<IRfidReader>();
+            _log = Substitute.For<ILog>();
             _uut = new StationControl(_door,_rfidReader,_log);
         }
 
