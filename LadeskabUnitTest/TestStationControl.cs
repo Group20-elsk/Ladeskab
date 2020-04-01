@@ -16,18 +16,24 @@ namespace LadeskabUnitTest
         private StationControl _uut;
         private IDoor _door;
         private IRfidReader _rfidReader;
-        private IConsoleWriter _consoleWriter;
         private ILog _log;
+        private IChargeControl _chargeControl;
+        private IDisplay _display;
 
         [SetUp]
         public void Setup() //Setup for fakes
         {
-            _consoleWriter = Substitute.For<IConsoleWriter>();
             _door = Substitute.For<IDoor>();
             _rfidReader = Substitute.For<IRfidReader>();
             _log = Substitute.For<ILog>();
-            _uut = new StationControl(_door,_rfidReader,_log);
+            _chargeControl = Substitute.For<IChargeControl>();
+            _display = Substitute.For<IDisplay>();
+            _uut = new StationControl(_door,_rfidReader,_log,_chargeControl,_display);
         }
+
+
+
+
 
         [TestCase(true)]
         [TestCase(false)]

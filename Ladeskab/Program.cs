@@ -6,7 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Ladeskab;
 using LadeskabLogik;
-using LadeskabLogik.Interfaces;
 
 namespace LadeskabAPP
 {
@@ -22,7 +21,10 @@ namespace LadeskabAPP
             IDoor _door = new Door(_consoleWriter);
             IRfidReader _rfidReader = new RfidReader();
             ILog _log = new LogFile();
-            StationControl _stationControl = new StationControl(_door,_rfidReader,_log);
+            IDisplay _display = new Display(_consoleWriter);
+            IUsbCharger _usbCharger = new UsbChargerSimulator();
+            IChargeControl _chargeControl = new ChargeControl(_usbCharger,_display);
+            StationControl _stationControl = new StationControl(_door,_rfidReader,_log,_chargeControl,_display);
 
             while (true)
             {

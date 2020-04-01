@@ -6,7 +6,6 @@ using System.Net.Configuration;
 using System.Text;
 using System.Threading.Tasks;
 using LadeskabLogik;
-using LadeskabLogik.Interfaces;
 
 namespace Ladeskab
 {
@@ -34,12 +33,14 @@ namespace Ladeskab
         private ILog _log;
         static IDisplay _display = new Display(_consoleWriter);
         private IChargeControl _chargeControl = new ChargeControl(_charger, _display);
-        public StationControl(IDoor doorStatus, IRfidReader rfidStatus, ILog log)//tilføj instanser af ..... se klassediagram
+        public StationControl(IDoor doorStatus, IRfidReader rfidStatus, ILog log, IChargeControl chargeControl, IDisplay display)
         {
             doorStatus.DoorChangedEvents += HandleDoorStatusChangedEvent;//attacher 
             _door = doorStatus;
             rfidStatus.RfidSensedEvents += HandleRfidStatusChangedEvent;//attacher
             _log = log;
+            _chargeControl = chargeControl;
+            _display = display;
         }
 
         private void HandleRfidStatusChangedEvent(object sender, RfidSensedEventArgs e)
