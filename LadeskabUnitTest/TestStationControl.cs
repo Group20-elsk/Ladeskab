@@ -28,20 +28,31 @@ namespace LadeskabUnitTest
             _log = Substitute.For<ILog>();
             _chargeControl = Substitute.For<IChargeControl>();
             _display = Substitute.For<IDisplay>();
+
             _uut = new StationControl(_door,_rfidReader,_log,_chargeControl,_display);
         }
+
         [Test]
         public void RaisedDoorChangeEvent_True_DoorOpen_Received_tilslut_telefon()
         {
             _door.DoorChangedEvents += Raise.EventWith(new DoorChangedEventArgs(){DoorStatus = true});
             _display.Received().writeDisplay("Tilslut telefon");
         }
+
         [Test]
         public void RaisedDoorChangeEvent_False_DoorOpen_NotReceived_tilslut_telefon()
         {
             _door.DoorChangedEvents += Raise.EventWith(new DoorChangedEventArgs() { DoorStatus = false });
             _display.DidNotReceive().writeDisplay("Tilslut telefon");
         }
+
+        [Test]
+        public void RaisedRfidSendesEvent()
+        {
+            _rfidReader.RfidSensedEvents += Raise.EventWith(new RfidSensedEventArgs() {RfidSensed = true});
+        }
+
+
 
         [Test]
         public void RaisedDoorChangeEvent_False_Available_Received_Indlæs_RFID()
