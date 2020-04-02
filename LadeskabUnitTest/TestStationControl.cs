@@ -50,6 +50,7 @@ namespace LadeskabUnitTest
         public void RaisedRfidSendesEvent()
         {
             _rfidReader.RfidSensedEvents += Raise.EventWith(new RfidSensedEventArgs() {RfidSensed = true});
+
         }
 
 
