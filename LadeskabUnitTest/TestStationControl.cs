@@ -72,7 +72,7 @@ namespace LadeskabUnitTest
             _chargeControl.IsConnected().Returns(isConnected);
 
             //Problem: Rfidstatus spiller ingen rolle i koden??
-            _rfidReader.RfidSensedEvents += Raise.EventWith(new RfidSensedEventArgs() {RfidSensed = rfidstatus});
+            _rfidReader.RfidSensedEvents += Raise.EventWith(new RfidSensedEventArgs() {RfidSensed = rfidstatus, Id = 10});
 
             _chargeControl.Received().StartCharge();
         }
@@ -87,7 +87,7 @@ namespace LadeskabUnitTest
             _chargeControl.IsConnected().Returns(isConnected);
 
             //Problem: Rfidstatus spiller ingen rolle i koden??
-            _rfidReader.RfidSensedEvents += Raise.EventWith(new RfidSensedEventArgs() { RfidSensed = rfidstatus });
+            _rfidReader.RfidSensedEvents += Raise.EventWith(new RfidSensedEventArgs() { RfidSensed = rfidstatus, Id = 10});
 
             _chargeControl.DidNotReceive().StartCharge();
         }
@@ -102,7 +102,7 @@ namespace LadeskabUnitTest
 
             //Ønsker at se at der ikke sker noget
             //Problem: Rfidstatus spiller ingen rolle i koden??
-            _rfidReader.RfidSensedEvents += Raise.EventWith(new RfidSensedEventArgs() { RfidSensed = rfidstatus });
+            _rfidReader.RfidSensedEvents += Raise.EventWith(new RfidSensedEventArgs() { RfidSensed = rfidstatus, Id = 10 });
 
             _chargeControl.DidNotReceive().StartCharge();
         }
@@ -116,7 +116,7 @@ namespace LadeskabUnitTest
 
             //Ønsker at se at der ikke sker noget
             //Problem: Rfidstatus spiller ingen rolle i koden??
-            _rfidReader.RfidSensedEvents += Raise.EventWith(new RfidSensedEventArgs() { RfidSensed = rfidstatus });
+            _rfidReader.RfidSensedEvents += Raise.EventWith(new RfidSensedEventArgs() { RfidSensed = rfidstatus, Id = 10});
 
             _chargeControl.DidNotReceive().StopCharge();
         }
@@ -135,9 +135,9 @@ namespace LadeskabUnitTest
 
             //Problem: Rfidstatus spiller ingen rolle i koden??
             //State = Locked
-            _rfidReader.RfidSensedEvents += Raise.EventWith(new RfidSensedEventArgs() { RfidSensed = rfidstatus1 });
+            _rfidReader.RfidSensedEvents += Raise.EventWith(new RfidSensedEventArgs() { RfidSensed = rfidstatus1, Id = 10 });
 
-            _rfidReader.RfidSensedEvents += Raise.EventWith(new RfidSensedEventArgs() { RfidSensed = rfidstatus2 });
+            _rfidReader.RfidSensedEvents += Raise.EventWith(new RfidSensedEventArgs() { RfidSensed = rfidstatus2, Id = 10 });
 
             _chargeControl.Received().StopCharge();
         }
@@ -196,9 +196,9 @@ namespace LadeskabUnitTest
 
             //Problem: Rfidstatus spiller ingen rolle i koden??
             //State = Locked
-            _rfidReader.RfidSensedEvents += Raise.EventWith(new RfidSensedEventArgs() { RfidSensed = rfidstatus1 });
+            _rfidReader.RfidSensedEvents += Raise.EventWith(new RfidSensedEventArgs() { RfidSensed = rfidstatus1, Id = id});
 
-            _rfidReader.RfidSensedEvents += Raise.EventWith(new RfidSensedEventArgs() { RfidSensed = rfidstatus2 });
+            _rfidReader.RfidSensedEvents += Raise.EventWith(new RfidSensedEventArgs() { RfidSensed = rfidstatus2, Id = id});
 
             _log.Received().LogLadeskabLocked(id);
         }
