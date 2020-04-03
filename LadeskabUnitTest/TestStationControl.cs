@@ -142,6 +142,29 @@ namespace LadeskabUnitTest
             _chargeControl.Received().StopCharge();
         }
 
+        //[TestCase(false, false, false, true)]
+        //[TestCase(false, false, true, true)]
+        //[TestCase(false, true, false, true)]
+        //[TestCase(false, true, true, true)]
+        //public void RaisedDoorChangeEvent_Locked_id_equals_oldId_StopCharge_NotCalled(bool doorstatus, bool rfidstatus1, bool rfidstatus2, bool isConnected)
+        //{
+        //    //State = Available
+        //    _door.DoorChangedEvents += Raise.EventWith(new DoorChangedEventArgs() { DoorStatus = doorstatus });
+
+        //    _chargeControl.IsConnected().Returns(isConnected);
+
+        //    //Problem: Rfidstatus spiller ingen rolle i koden??
+        //    //State = Locked
+        //    _rfidReader.RfidSensedEvents += Raise.EventWith(new RfidSensedEventArgs() { RfidSensed = rfidstatus1 });
+
+        //    //For at teste at dette scenarie skal Id være mulig at ændre, og det er det ikke i dette tilfælde
+        //    //Koden vil derfor aldrig gå ind i linje 111 i StationControl
+        //    _rfidReader.RfidSensedEvents += Raise.EventWith(new RfidSensedEventArgs() { RfidSensed = rfidstatus2 });
+
+        //    _chargeControl.DidNotReceive().StopCharge();
+        //}
+
+
 
         //Test af LogFile
         [TestCase(false, false, true, 10)]
@@ -182,27 +205,8 @@ namespace LadeskabUnitTest
 
 
 
-        //[TestCase(false, false, false, true)]
-        //[TestCase(false, false, true, true)]
-        //[TestCase(false, true, false, true)]
-        //[TestCase(false, true, true, true)]
-        //public void RaisedDoorChangeEvent_Locked_id_equals_oldId_StopCharge_NotCalled(bool doorstatus, bool rfidstatus1, bool rfidstatus2, bool isConnected)
-        //{
-        //    //State = Available
-        //    _door.DoorChangedEvents += Raise.EventWith(new DoorChangedEventArgs() { DoorStatus = doorstatus });
 
-        //    _chargeControl.IsConnected().Returns(isConnected);
 
-        //    //Problem: Rfidstatus spiller ingen rolle i koden??
-        //    //State = Locked
-        //    _rfidReader.RfidSensedEvents += Raise.EventWith(new RfidSensedEventArgs() { RfidSensed = rfidstatus1 });
-
-        //    //For at teste at dette scenarie skal Id være mulig at ændre, og det er det ikke i dette tilfælde
-        //    //Koden vil derfor aldrig gå ind i linje 111 i StationControl
-        //    _rfidReader.RfidSensedEvents += Raise.EventWith(new RfidSensedEventArgs() { RfidSensed = rfidstatus2 });
-
-        //    _chargeControl.DidNotReceive().StopCharge();
-        //}
 
 
 
