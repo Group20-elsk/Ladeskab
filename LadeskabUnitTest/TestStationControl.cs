@@ -31,8 +31,7 @@ namespace LadeskabUnitTest
             _uut = new StationControl(_door,_rfidReader,_log,_chargeControl,_display);
         }
 
-        //Test af door
-
+        //Test af Door event
         [Test]
         public void RaisedDoorChangeEvent_True_DoorOpen_Received_tilslut_telefon()
         {
@@ -62,66 +61,110 @@ namespace LadeskabUnitTest
         }
 
 
-        //Test af Rfid og Door
-        [TestCase(false, false)]
-
-        public void RaisedDoorChangeEvent_(bool doorstatus, bool rfidstatus)
+        //Test af Door event og Rfid event
+        [TestCase(false, false,true)]
+        [TestCase(false, true, true)]
+        public void RaisedDoorChangeEvent_Available_IsConnected_isTrue_StartCharge_Called(bool doorstatus, bool rfidstatus, bool isConnected)
         {
             //Ønsker at gøre state = available
             _door.DoorChangedEvents += Raise.EventWith(new DoorChangedEventArgs() { DoorStatus = doorstatus});
 
-            //Ønsker at gøre state = locked
+            _chargeControl.IsConnected().Returns(isConnected);
+
             //Problem: Rfidstatus spiller ingen rolle i koden??
             _rfidReader.RfidSensedEvents += Raise.EventWith(new RfidSensedEventArgs() {RfidSensed = rfidstatus});
 
             _chargeControl.Received().StartCharge();
         }
 
-
-
-
-        //Test af RfidReader
-
-        [Test]
-        public void RaisedRfidSendesEvent_True()
+        [TestCase(false, false, false)]
+        [TestCase(false, true, false)]
+        public void RaisedDoorChangeEvent_Available_IsConnected_isFalse_StartCharge_NotCalled(bool doorstatus, bool rfidstatus, bool isConnected)
         {
-            _rfidReader.RfidSensedEvents += Raise.EventWith(new RfidSensedEventArgs() {RfidSensed = true});
-            _display.Received().writeDisplay("");
+            //Ønsker at gøre state = available
+            _door.DoorChangedEvents += Raise.EventWith(new DoorChangedEventArgs() { DoorStatus = doorstatus });
+
+            _chargeControl.IsConnected().Returns(isConnected);
+
+            //Problem: Rfidstatus spiller ingen rolle i koden??
+            _rfidReader.RfidSensedEvents += Raise.EventWith(new RfidSensedEventArgs() { RfidSensed = rfidstatus });
+
+            _chargeControl.DidNotReceive().StartCharge();
         }
 
-        [Test]
-        public void RaisedRfidSendesEvent_False()
+
+
+        [TestCase(true, false)]
+        [TestCase(true, true)]
+        public void RaisedDoorChangeEvent_DoorOpen_NotReceive_StartCharge(bool doorstatus, bool rfidstatus)
         {
-            _rfidReader.RfidSensedEvents += Raise.EventWith(new RfidSensedEventArgs() { RfidSensed = false });
+            //Ønsker at gøre state = doorOpen
+            _door.DoorChangedEvents += Raise.EventWith(new DoorChangedEventArgs() { DoorStatus = doorstatus });
+
+            //Ønsker at se at der ikke sker noget
+            //Problem: Rfidstatus spiller ingen rolle i koden??
+            _rfidReader.RfidSensedEvents += Raise.EventWith(new RfidSensedEventArgs() { RfidSensed = rfidstatus });
+
+            _chargeControl.DidNotReceive().StartCharge();
         }
 
-        [Test]
-        public void RaisedRfidSendesEvent_True_True()
+        [TestCase(true, false)]
+        [TestCase(true, true)]
+        public void RaisedDoorChangeEvent_DoorOpen_NotReceive_StopCharge(bool doorstatus, bool rfidstatus)
         {
-            _rfidReader.RfidSensedEvents += Raise.EventWith(new RfidSensedEventArgs() { RfidSensed = true });
-            _rfidReader.RfidSensedEvents += Raise.EventWith(new RfidSensedEventArgs() { RfidSensed = true });
+            //Ønsker at gøre state = doorOpen
+            _door.DoorChangedEvents += Raise.EventWith(new DoorChangedEventArgs() { DoorStatus = doorstatus });
+
+            //Ønsker at se at der ikke sker noget
+            //Problem: Rfidstatus spiller ingen rolle i koden??
+            _rfidReader.RfidSensedEvents += Raise.EventWith(new RfidSensedEventArgs() { RfidSensed = rfidstatus });
+
+            _chargeControl.DidNotReceive().StopCharge();
         }
 
-        [Test]
-        public void RaisedRfidSendesEvent_False_False()
+
+        [TestCase(false, false, false, true)]
+        [TestCase(false, false, true, true)]
+        [TestCase(false, true, false, true)]
+        [TestCase(false, true, true, true)]
+        public void RaisedDoorChangeEvent_Locked_id_equals_oldId_StopCharge_Called(bool doorstatus, bool rfidstatus1, bool rfidstatus2, bool isConnected)
         {
-            _rfidReader.RfidSensedEvents += Raise.EventWith(new RfidSensedEventArgs() { RfidSensed = false });
-            _rfidReader.RfidSensedEvents += Raise.EventWith(new RfidSensedEventArgs() { RfidSensed = false });
+            //State = Available
+            _door.DoorChangedEvents += Raise.EventWith(new DoorChangedEventArgs() { DoorStatus = doorstatus });
+
+            _chargeControl.IsConnected().Returns(isConnected);
+
+            //Problem: Rfidstatus spiller ingen rolle i koden??
+            //State = Locked
+            _rfidReader.RfidSensedEvents += Raise.EventWith(new RfidSensedEventArgs() { RfidSensed = rfidstatus1 });
+
+            _rfidReader.RfidSensedEvents += Raise.EventWith(new RfidSensedEventArgs() { RfidSensed = rfidstatus2 });
+
+            _chargeControl.Received().StopCharge();
         }
 
-        [Test]
-        public void RaisedRfidSendesEvent_False_True()
+        [TestCase(false, false, false, true)]
+        [TestCase(false, false, true, true)]
+        [TestCase(false, true, false, true)]
+        [TestCase(false, true, true, true)]
+        public void RaisedDoorChangeEvent_Locked_id_equals_oldId_StopCharge_NotCalled(bool doorstatus, bool rfidstatus1, bool rfidstatus2, bool isConnected)
         {
-            _rfidReader.RfidSensedEvents += Raise.EventWith(new RfidSensedEventArgs() { RfidSensed = false });
-            _rfidReader.RfidSensedEvents += Raise.EventWith(new RfidSensedEventArgs() { RfidSensed = true });
+            //State = Available
+            _door.DoorChangedEvents += Raise.EventWith(new DoorChangedEventArgs() { DoorStatus = doorstatus });
+
+            _chargeControl.IsConnected().Returns(isConnected);
+
+            //Problem: Rfidstatus spiller ingen rolle i koden??
+            //State = Locked
+            _rfidReader.RfidSensedEvents += Raise.EventWith(new RfidSensedEventArgs() { RfidSensed = rfidstatus1 });
+
+            //For at teste at dette scenarie skal Id være mulig at ændre, og det er det ikke i dette tilfælde
+            //Koden vil derfor aldrig gå ind i linje 111 i StationControl
+            _rfidReader.RfidSensedEvents += Raise.EventWith(new RfidSensedEventArgs() { RfidSensed = rfidstatus2 });
+
+            _chargeControl.DidNotReceive().StopCharge();
         }
 
-        [Test]
-        public void RaisedRfidSendesEvent_True_False()
-        {
-            _rfidReader.RfidSensedEvents += Raise.EventWith(new RfidSensedEventArgs() { RfidSensed = true });
-            _rfidReader.RfidSensedEvents += Raise.EventWith(new RfidSensedEventArgs() { RfidSensed = false });
-        }
 
 
 
