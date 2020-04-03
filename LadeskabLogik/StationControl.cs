@@ -74,10 +74,10 @@ namespace LadeskabLogik
                 case LadeskabState.Available:
                     // Check for ladeforbindelse
                     _chargeControl.IsConnected();//returnere en boolean 
-                    if (_charger.Connected)
+                    if (_charger.Connected) //Burde det ikke være _chargeControl.IsConnected?
                     {
                         _door.LockDoor("Døren er lukket");
-                        _charger.StartCharge();
+                        _charger.StartCharge(); //Burde det ikke være _ChargeControl.StartCharge() - Kia
                         _oldId = id;
                         _log.LogLadeskabAvailable(id);
                         Console.WriteLine("Skabet er låst og din telefon lades. Brug dit RFID tag til at låse op.");

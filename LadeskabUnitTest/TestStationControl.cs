@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Ladeskab;
 using LadeskabLogik;
 using NUnit.Framework;
 using NSubstitute;
@@ -61,7 +60,24 @@ namespace LadeskabUnitTest
             _door.DoorChangedEvents += Raise.EventWith(new DoorChangedEventArgs() { DoorStatus = true });
             _display.DidNotReceive().writeDisplay("Indlæs RFID");
         }
-        
+
+
+        //Test af Rfid og Door
+        [TestCase(false, false)]
+
+        public void RaisedDoorChangeEvent_(bool doorstatus, bool rfidstatus)
+        {
+            //Ønsker at gøre state = available
+            _door.DoorChangedEvents += Raise.EventWith(new DoorChangedEventArgs() { DoorStatus = doorstatus});
+
+            //Ønsker at gøre state = locked
+            //Problem: Rfidstatus spiller ingen rolle i koden??
+            _rfidReader.RfidSensedEvents += Raise.EventWith(new RfidSensedEventArgs() {RfidSensed = rfidstatus});
+
+            _chargeControl.Received().StartCharge();
+        }
+
+
 
 
         //Test af RfidReader
@@ -70,14 +86,13 @@ namespace LadeskabUnitTest
         public void RaisedRfidSendesEvent_True()
         {
             _rfidReader.RfidSensedEvents += Raise.EventWith(new RfidSensedEventArgs() {RfidSensed = true});
-           
+            _display.Received().writeDisplay("");
         }
 
         [Test]
         public void RaisedRfidSendesEvent_False()
         {
             _rfidReader.RfidSensedEvents += Raise.EventWith(new RfidSensedEventArgs() { RfidSensed = false });
-
         }
 
         [Test]
