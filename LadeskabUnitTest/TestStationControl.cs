@@ -177,7 +177,7 @@ namespace LadeskabUnitTest
             _chargeControl.IsConnected().Returns(isConnected);
 
             //Problem: Rfidstatus spiller ingen rolle i koden??
-            _rfidReader.RfidSensedEvents += Raise.EventWith(new RfidSensedEventArgs() { RfidSensed = rfidstatus });
+            _rfidReader.RfidSensedEvents += Raise.EventWith(new RfidSensedEventArgs() { RfidSensed = rfidstatus, Id = id });
 
             _log.Received().LogLadeskabAvailable(id);       
         }
@@ -202,12 +202,6 @@ namespace LadeskabUnitTest
 
             _log.Received().LogLadeskabLocked(id);
         }
-
-
-
-
-
-
 
 
 
