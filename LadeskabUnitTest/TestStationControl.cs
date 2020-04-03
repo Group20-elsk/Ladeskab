@@ -146,7 +146,7 @@ namespace LadeskabUnitTest
         //[TestCase(false, false, true, true)]
         //[TestCase(false, true, false, true)]
         //[TestCase(false, true, true, true)]
-        //public void RaisedDoorChangeEvent_Locked_id_equals_oldId_StopCharge_NotCalled(bool doorstatus, bool rfidstatus1, bool rfidstatus2, bool isConnected)
+        //public void RaisedDoorChangeEvent_Locked_id_Notequals_oldId_StopCharge_NotCalled(bool doorstatus, bool rfidstatus1, bool rfidstatus2, bool isConnected)
         //{
         //    //State = Available
         //    _door.DoorChangedEvents += Raise.EventWith(new DoorChangedEventArgs() { DoorStatus = doorstatus });
@@ -179,7 +179,7 @@ namespace LadeskabUnitTest
             //Problem: Rfidstatus spiller ingen rolle i koden??
             _rfidReader.RfidSensedEvents += Raise.EventWith(new RfidSensedEventArgs() { RfidSensed = rfidstatus });
 
-            _log.Received().LogLadeskabAvailable(id);       //Jeg skriver 10 da dette er hardcoded i StationControl
+            _log.Received().LogLadeskabAvailable(id);       
         }
 
 
@@ -222,13 +222,13 @@ namespace LadeskabUnitTest
         //    Assert.That(_uut.CurrentDoorStatus, Is.EqualTo(doorStatus));
         //}
 
-        //[TestCase(true)]
-        //[TestCase(false)]
-        //public void TestCurrentDoorStatus(bool doorStatus) //Value-based test
-        //{
-        //    _uut.CurrentDoorStatus = doorStatus;
-        //    Assert.That(_uut.CurrentDoorStatus, Is.EqualTo(doorStatus));
-        //}
+        [TestCase(true)]
+        [TestCase(false)]
+        public void TestCurrentDoorStatus(bool doorStatus) //Value-based test
+        {
+            _uut.CurrentDoorStatus = doorStatus;
+            Assert.That(_uut.CurrentDoorStatus, Is.EqualTo(doorStatus));
+        }
 
         //[TestCase(true)]
         //[TestCase(false)]
@@ -238,12 +238,12 @@ namespace LadeskabUnitTest
         //    Assert.That(_uut.CurrentRfidSensedStatus, Is.EqualTo(RFIDstatus));
         //}
 
-        //[TestCase(true)]
-        //[TestCase(false)]
-        //public void TestCurrentRFIDStatus(bool RFIDStatus) //Value-based test
-        //{
-        //    _uut.CurrentRfidSensedStatus = RFIDStatus;
-        //    Assert.That(_uut.CurrentRfidSensedStatus, Is.EqualTo(RFIDStatus));
-        //}
+        [TestCase(true)]
+        [TestCase(false)]
+        public void TestCurrentRFIDStatus(bool RFIDStatus) //Value-based test
+        {
+            _uut.CurrentRfidSensedStatus = RFIDStatus;
+            Assert.That(_uut.CurrentRfidSensedStatus, Is.EqualTo(RFIDStatus));
+        }
     }
 }

@@ -9,6 +9,6 @@ namespace LadeskabLogik
     public interface IRfidReader
     {
         event EventHandler<RfidSensedEventArgs> RfidSensedEvents;
-        void SetRfidReaderStatus(bool _newRfidStatus);
+        void SetRfidReaderStatus(bool _newRfidStatus, int id);
     }
 }

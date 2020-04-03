@@ -39,7 +39,9 @@ namespace LadeskabAPP
                         _door.SetDoorStatus(false);
                         break;
                     case 'r':
-                        _rfidReader.SetRfidReaderStatus(true);
+                        Console.WriteLine("Indtast ID");
+                        int id = Convert.ToInt32(Console.ReadLine());
+                        _rfidReader.SetRfidReaderStatus(true, id);
                         break;
                    
 

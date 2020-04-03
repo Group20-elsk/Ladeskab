@@ -12,9 +12,9 @@ namespace LadeskabLogik
         private bool _oldRfidStatus;
         public event EventHandler<RfidSensedEventArgs> RfidSensedEvents;
 
-        public void SetRfidReaderStatus(bool _newRfidStatus)
+        public void SetRfidReaderStatus(bool _newRfidStatus, int id)
         {
-            OnRfidStatusChanged(new RfidSensedEventArgs { RfidSensed = _newRfidStatus });
+            OnRfidStatusChanged(new RfidSensedEventArgs { RfidSensed = _newRfidStatus, Id = id});
             _oldRfidStatus = _newRfidStatus;
         }
 

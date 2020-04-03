@@ -9,5 +9,6 @@ namespace LadeskabLogik
     public class RfidSensedEventArgs : EventArgs
     {
         public bool RfidSensed { get; set; }
+        public int Id { get; set; }
     }
 }
