@@ -142,6 +142,46 @@ namespace LadeskabUnitTest
             _chargeControl.Received().StopCharge();
         }
 
+
+        //Test af LogFile
+        [TestCase(false, false, true, 10)]
+        [TestCase(false, true, true, 10)]
+        public void RaisedDoorChangeEvent_Available_IsConnected_isTrue_LogLadeskabAvailable_Called_Id10(bool doorstatus, bool rfidstatus, bool isConnected, int id)
+        {
+            //Ønsker at gøre state = available
+            _door.DoorChangedEvents += Raise.EventWith(new DoorChangedEventArgs() { DoorStatus = doorstatus });
+
+            _chargeControl.IsConnected().Returns(isConnected);
+
+            //Problem: Rfidstatus spiller ingen rolle i koden??
+            _rfidReader.RfidSensedEvents += Raise.EventWith(new RfidSensedEventArgs() { RfidSensed = rfidstatus });
+
+            _log.Received().LogLadeskabAvailable(id);       //Jeg skriver 10 da dette er hardcoded i StationControl
+        }
+
+
+        [TestCase(false, false, false, true, 10)]
+        [TestCase(false, false, true, true, 10)]
+        [TestCase(false, true, false, true, 10)]
+        [TestCase(false, true, true, true, 10)]
+        public void RaisedDoorChangeEvent_Locked_id_equals_oldId_LogLadeskabLocked_Called_Id10(bool doorstatus, bool rfidstatus1, bool rfidstatus2, bool isConnected, int id)
+        {
+            //State = Available
+            _door.DoorChangedEvents += Raise.EventWith(new DoorChangedEventArgs() { DoorStatus = doorstatus });
+
+            _chargeControl.IsConnected().Returns(isConnected);
+
+            //Problem: Rfidstatus spiller ingen rolle i koden??
+            //State = Locked
+            _rfidReader.RfidSensedEvents += Raise.EventWith(new RfidSensedEventArgs() { RfidSensed = rfidstatus1 });
+
+            _rfidReader.RfidSensedEvents += Raise.EventWith(new RfidSensedEventArgs() { RfidSensed = rfidstatus2 });
+
+            _log.Received().LogLadeskabLocked(id);
+        }
+
+
+
         //[TestCase(false, false, false, true)]
         //[TestCase(false, false, true, true)]
         //[TestCase(false, true, false, true)]
