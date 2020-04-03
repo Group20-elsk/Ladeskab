@@ -32,6 +32,8 @@ namespace LadeskabUnitTest
             _uut = new StationControl(_door,_rfidReader,_log,_chargeControl,_display);
         }
 
+        //Test af door
+
         [Test]
         public void RaisedDoorChangeEvent_True_DoorOpen_Received_tilslut_telefon()
         {
@@ -47,26 +49,66 @@ namespace LadeskabUnitTest
         }
 
         [Test]
-        public void RaisedRfidSendesEvent()
-        {
-            _rfidReader.RfidSensedEvents += Raise.EventWith(new RfidSensedEventArgs() {RfidSensed = true});
-
-        }
-
-
-
-        [Test]
         public void RaisedDoorChangeEvent_False_Available_Received_Indlæs_RFID()
         {
             _door.DoorChangedEvents += Raise.EventWith(new DoorChangedEventArgs() { DoorStatus = false });
             _display.Received().writeDisplay("Indlæs RFID");
         }
+
         [Test]
         public void RaisedDoorChangeEvent_True_Available_NotReceived_Indlæs_RFID()
         {
             _door.DoorChangedEvents += Raise.EventWith(new DoorChangedEventArgs() { DoorStatus = true });
             _display.DidNotReceive().writeDisplay("Indlæs RFID");
         }
+        
+
+
+        //Test af RfidReader
+
+        [Test]
+        public void RaisedRfidSendesEvent_True()
+        {
+            _rfidReader.RfidSensedEvents += Raise.EventWith(new RfidSensedEventArgs() {RfidSensed = true});
+           
+        }
+
+        [Test]
+        public void RaisedRfidSendesEvent_False()
+        {
+            _rfidReader.RfidSensedEvents += Raise.EventWith(new RfidSensedEventArgs() { RfidSensed = false });
+
+        }
+
+        [Test]
+        public void RaisedRfidSendesEvent_True_True()
+        {
+            _rfidReader.RfidSensedEvents += Raise.EventWith(new RfidSensedEventArgs() { RfidSensed = true });
+            _rfidReader.RfidSensedEvents += Raise.EventWith(new RfidSensedEventArgs() { RfidSensed = true });
+        }
+
+        [Test]
+        public void RaisedRfidSendesEvent_False_False()
+        {
+            _rfidReader.RfidSensedEvents += Raise.EventWith(new RfidSensedEventArgs() { RfidSensed = false });
+            _rfidReader.RfidSensedEvents += Raise.EventWith(new RfidSensedEventArgs() { RfidSensed = false });
+        }
+
+        [Test]
+        public void RaisedRfidSendesEvent_False_True()
+        {
+            _rfidReader.RfidSensedEvents += Raise.EventWith(new RfidSensedEventArgs() { RfidSensed = false });
+            _rfidReader.RfidSensedEvents += Raise.EventWith(new RfidSensedEventArgs() { RfidSensed = true });
+        }
+
+        [Test]
+        public void RaisedRfidSendesEvent_True_False()
+        {
+            _rfidReader.RfidSensedEvents += Raise.EventWith(new RfidSensedEventArgs() { RfidSensed = true });
+            _rfidReader.RfidSensedEvents += Raise.EventWith(new RfidSensedEventArgs() { RfidSensed = false });
+        }
+
+
 
 
         //[TestCase(true)]

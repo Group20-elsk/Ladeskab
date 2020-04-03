@@ -5,9 +5,9 @@ using System.Linq;
 using System.Net.Configuration;
 using System.Text;
 using System.Threading.Tasks;
-using LadeskabLogik;
 
-namespace Ladeskab
+
+namespace LadeskabLogik
 {
     public class StationControl 
     {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LadeskabLogik
 {
-    public class RfidSensedEventArgs
+    public class RfidSensedEventArgs : EventArgs
     {
         public bool RfidSensed { get; set; }
     }
