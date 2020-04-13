@@ -204,7 +204,7 @@ namespace LadeskabUnitTest
         }
 
         [TestCase(true,true,10,9)]
-        public void RaisedRfidStatusChangedEvent_state_available_to_locked_to_available_with_newid( bool rfidstaus1, bool isConnected,int oldid, int newid)
+        public void RaisedRfidStatusChangedEvent_state_available_to_locked_to_available_with_old_and_newid( bool rfidstaus1, bool isConnected,int oldid, int newid)
         {
             _uut.CurrentDoorStatus = false;
             _chargeControl.IsConnected().Returns(isConnected);
@@ -223,6 +223,24 @@ namespace LadeskabUnitTest
 
             Assert.That(_uut.CurrentRfidSensedStatus, Is.EqualTo(rfidstaus1));
             _log.Received().LogLadeskabAvailable(newid);
+        }
+
+        [TestCase(true,true,10)]
+        public void RaisedRfidStatusChangedEvent_state_available_to_locked_with_same_id(bool rfidstaus1, bool isConnected, int id)
+        {
+            _uut.CurrentDoorStatus = false;
+            _chargeControl.IsConnected().Returns(isConnected);
+
+            //state available to locked
+            _rfidReader.RfidSensedEvents +=
+                Raise.EventWith(new RfidSensedEventArgs() { RfidSensed = rfidstaus1, Id = id });
+
+            //state locked to available
+            _rfidReader.RfidSensedEvents +=
+                Raise.EventWith(new RfidSensedEventArgs() { RfidSensed = rfidstaus1, Id = id });
+
+            Assert.That(_uut.CurrentRfidSensedStatus, Is.EqualTo(rfidstaus1));
+            _log.Received().LogLadeskabLocked(id);
         }
 
         //Gammel test:
