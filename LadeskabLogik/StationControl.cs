@@ -46,7 +46,7 @@ namespace LadeskabLogik
         private void HandleRfidStatusChangedEvent(object sender, RfidSensedEventArgs e)
         {
             CurrentRfidSensedStatus = e.RfidSensed;
-            RfidDetected(e.Id);//Evt. ændre ID senere
+            RfidDetected(e.Id);
         }
 
         private void HandleDoorStatusChangedEvent(object sender, DoorChangedEventArgs e)
