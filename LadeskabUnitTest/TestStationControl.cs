@@ -243,6 +243,24 @@ namespace LadeskabUnitTest
             _log.Received().LogLadeskabLocked(id);
         }
 
+        [TestCase(true, true, 10, 9)]
+        public void RaisedRfidStatusChangedEvent_test_state_locked_with_different_id(bool rfidstaus1, bool isConnected, int id1, int id2)
+        {
+            _uut.CurrentDoorStatus = false;
+            _chargeControl.IsConnected().Returns(isConnected);
+
+            //state available to locked
+            _rfidReader.RfidSensedEvents +=
+                Raise.EventWith(new RfidSensedEventArgs() { RfidSensed = rfidstaus1, Id = id1 });
+
+            //state locked 
+            _rfidReader.RfidSensedEvents +=
+                Raise.EventWith(new RfidSensedEventArgs() { RfidSensed = rfidstaus1, Id = id2 });
+
+            Assert.That(_uut.CurrentRfidSensedStatus, Is.EqualTo(rfidstaus1));
+            _display.Received().writeDisplay("Forkert RFID tag");
+        }
+
         //Gammel test:
 
         //[TestCase(true)]

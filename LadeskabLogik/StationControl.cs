@@ -109,7 +109,9 @@ namespace LadeskabLogik
                     }
                     else
                     {
-                        Console.WriteLine("Forkert RFID tag");
+                        //Fejl, skulle det ikke være display som udskriver alt? og hvis, evt. ændre de andre steder
+                        //Console.WriteLine("Forkert RFID tag");
+                        _display.writeDisplay("Forkert RFID tag");
                     }
 
                     break;
